@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixNow - Reviews</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  body {
+    font-family: 'Albert Sans', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #dbe4ea;
+    border-radius: 999px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+</head>
+
+<body class="min-h-screen w-full overflow-x-hidden bg-[#fbfdff] text-gray-900">
+
+<!-- =====================================================
+     MOBILE SIDEBAR OVERLAY
+====================================================== -->
+<div
+  id="sidebarOverlay"
+  class="fixed inset-0 z-40 hidden bg-black/30 lg:hidden">
+</div>
+
+
+<!-- =====================================================
+     MAIN WRAPPER
+====================================================== -->
+<div class="min-h-screen w-full">
+
+
+  <!-- =====================================================
+       FIXED SIDEBAR
+  ====================================================== -->
+  <aside
+    id="sidebar"
+    class="fixed inset-y-0 left-0 z-50 flex w-60 -translate-x-full flex-col border-r border-[#e8eef3] bg-white transition-transform duration-200 lg:translate-x-0">
+
+    <!-- LOGO -->
+    <div
+      class="flex h-16 shrink-0 items-center justify-between border-b border-[#edf1f4] px-5 lg:justify-center">
+
+      <div class="text-center">
+
+        <div
+          class="font-display text-xl font-bold leading-none tracking-tight text-[#2772cc]">
+          FIX<span class="text-[#244f84]">NOW</span>
+        </div>
+
+        <p
+          class="mt-1 text-[10px] font-medium uppercase tracking-widest text-[#2772cc]">
+          Service Provider
+        </p>
+
+      </div>
+
+      <button
+        id="closeSidebar"
+        class="text-gray-400 lg:hidden">
+
+        <i
+          data-lucide="x"
+          class="h-5 w-5">
+        </i>
+
+      </button>
+
+    </div>
+
+
+    <!-- =================================================
+         SIDEBAR NAVIGATION
+    ================================================== -->
+    <nav class="min-h-0 flex-1 overflow-y-auto px-3 py-4">
+
+      <div class="space-y-1">
+
+        <!-- Dashboard -->
+        <a
+          href="#"
+          class="flex h-10 items-center rounded-lg bg-[#eef8ff] px-3 text-[#2772cc]">
+
+          <i
+            data-lucide="layout-dashboard"
+            class="mr-3 h-4 w-4">
+          </i>
+
+          <span class="text-sm font-medium">
+            Dashboard
+          </span>
+
+        </a>
+
+
+        <!-- Bookings -->
+        <a
+          href="#"
+          class="flex h-10 items-center rounded-lg px-3 text-[#53708e] transition hover:bg-[#f4f9fc]">
+
+          <i
+            data-lucide="book-open"
+            class="mr-3 h-4 w-4">
+          </i>
+
+          <span class="text-sm font-medium">
+            Bookings
+          </span>
+
+          <span
+            class="ml-auto rounded-full bg-[#55a9ed] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white">
+            10
+          </span>
+
+        </a>
+
+
+        <!-- Service Management -->
+        <a
+          href="#"
+          class="flex h-10 items-center rounded-lg px-3 text-[#53708e] transition hover:bg-[#f4f9fc]">
+
+          <i
+            data-lucide="settings-2"
+            class="mr-3 h-4 w-4">
+          </i>
+
+          <span class="text-sm font-medium">
+            Service Management
+          </span>
+
+        </a>
+
+
+        <!-- Customer Insights -->
+        <a
+          href="#"
+          class="flex h-10 items-center rounded-lg px-3 text-[#53708e] transition hover:bg-[#f4f9fc]">
+
+          <i
+            data-lucide="users"
+            class="mr-3 h-4 w-4">
+          </i>
+
+          <span class="text-sm font-medium">
+            Customer Insights
+          </span>
+
+          <span
+            class="ml-auto rounded-full bg-[#55a9ed] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white">
+            6
+          </span>
+
+        </a>
+
+
+        <!-- Profile -->
+        <a
+          href="#"
+          class="flex h-10 items-center rounded-lg px-3 text-[#53708e] transition hover:bg-[#f4f9fc]">
+
+          <i
+            data-lucide="user-round"
+            class="mr-3 h-4 w-4">
+          </i>
+
+          <span class="text-sm font-medium">
+            Profile
+          </span>
+
+        </a>
+
+
+        <!-- Settings -->
+        <a
+          href="#"
+          class="flex h-10 items-center rounded-lg px-3 text-[#53708e] transition hover:bg-[#f4f9fc]">
+
+          <i
+            data-lucide="settings"
+            class="mr-3 h-4 w-4">
+          </i>
+
+          <span class="text-sm font-medium">
+            Settings
+          </span>
+
+        </a>
+
+
+        <!-- Logout -->
+        <a
+          href="#"
+          class="flex h-10 items-center rounded-lg px-3 text-[#53708e] transition hover:bg-[#f4f9fc]">
+
+          <i
+            data-lucide="log-out"
+            class="mr-3 h-4 w-4">
+          </i>
+
+          <span class="text-sm font-medium">
+            Log Out
+          </span>
+
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <!-- =================================================
+         SUPPORT
+    ================================================== -->
+    <div class="shrink-0 border-t border-[#edf1f4] bg-white p-3">
+
+      <div
+        class="rounded-lg border border-[#d8edf9] bg-[#eef9ff] p-3">
+
+        <div class="mb-2 flex items-center">
+
+          <div
+            class="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-[#d9f0ff]">
+
+            <i
+              data-lucide="headphones"
+              class="h-3.5 w-3.5 text-[#2772cc]">
+            </i>
+
+          </div>
+
+          <span
+            class="text-xs font-semibold text-[#2772cc]">
+            Need Assistance?
+          </span>
+
+        </div>
+
+        <p
+          class="mb-2 text-[11px] leading-snug text-gray-500">
+          Contact Customer Support Team for assistance.
+        </p>
+
+        <button
+          class="h-8 w-full rounded-md border border-[#2772cc] bg-white text-xs font-medium text-[#2772cc] hover:bg-[#f4f9fc]">
+          Contact Support
+        </button>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+  <main
+    class="min-h-screen w-full lg:ml-60 lg:w-[calc(100%-15rem)]">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+    <header
+      class="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[#edf1f4] bg-white px-4 sm:px-6">
+
+      <!-- LEFT HEADER -->
+      <div class="flex items-center">
+
+        <!-- Mobile Menu -->
+        <button
+          id="openSidebar"
+          class="mr-3 text-gray-500 lg:hidden">
+
+          <i
+            data-lucide="menu"
+            class="h-5 w-5">
+          </i>
+
+        </button>
+
+        <h1
+          class="font-display text-lg font-semibold text-gray-900 sm:text-xl">
+
+          Reviews
+          <span class="ml-0.5">
+            📝
+          </span>
+
+        </h1>
+
+      </div>
+
+
+      <!-- RIGHT HEADER -->
+      <div class="flex items-center gap-2 sm:gap-3">
+
+
+        <!-- DESKTOP SEARCH -->
+        <div
+          class="hidden h-9 w-56 items-center rounded-lg border border-[#edf0f3] bg-white px-3 md:flex xl:w-72">
+
+          <i
+            data-lucide="search"
+            class="mr-2 h-3.5 w-3.5 text-gray-400">
+          </i>
+
+          <input
+            type="text"
+            placeholder="Search for Booking, Jobs..."
+            class="w-full bg-transparent text-xs outline-none placeholder:text-gray-400">
+
+        </div>
+
+
+        <!-- MOBILE SEARCH -->
+        <button
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#edf0f3] bg-white md:hidden">
+
+          <i
+            data-lucide="search"
+            class="h-4 w-4 text-[#2772cc]">
+          </i>
+
+        </button>
+
+
+        <!-- NOTIFICATION -->
+        <button
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#edf0f3] bg-white">
+
+          <i
+            data-lucide="bell"
+            class="h-4 w-4 text-[#2772cc]">
+          </i>
+
+        </button>
+
+
+        <!-- PROFILE -->
+        <div class="flex items-center">
+
+          <div
+            class="mr-2 h-9 w-9 shrink-0 overflow-hidden rounded-full ring-1 ring-[#e8f1f8]">
+
+            <img
+              src="https://i.pravatar.cc/80?img=12"
+              alt="Rahul Sharma"
+              class="h-full w-full object-cover">
+
+          </div>
+
+
+          <div class="mr-1 hidden sm:block">
+
+            <p
+              class="text-xs font-semibold leading-none text-gray-900">
+              Rahul Sharma
+            </p>
+
+            <div class="mt-1 flex items-center">
+
+              <span
+                class="mr-1 h-1.5 w-1.5 rounded-full bg-green-500">
+              </span>
+
+              <span class="text-[10px] text-gray-500">
+                Service Provider
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <i
+            data-lucide="chevron-down"
+            class="hidden h-4 w-4 text-gray-500 sm:block">
+          </i>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
+    <section class="flex-1 p-4 sm:p-6">
+
+
+      <!-- =================================================
+           TOP ANALYTICS
+      ================================================== -->
+      <div
+        class="grid grid-cols-1 overflow-hidden rounded-xl border border-[#edf0f3] bg-white md:grid-cols-12">
+
+
+        <!-- OVERALL RATING -->
+        <div
+          class="group relative col-span-1 cursor-pointer overflow-hidden border-b border-[#edf0f3] bg-[#111827] p-5 transition-all duration-150 hover:bg-[#161f2e] md:col-span-4 md:border-b-0 md:border-r">
+
+          <div
+            class="absolute -right-8 -top-10 h-36 w-36 rotate-[25deg] rounded-full border border-[#334155]">
+          </div>
+
+          <div
+            class="absolute -right-2 -top-4 h-24 w-24 rotate-[25deg] rounded-full border border-[#334155]">
+          </div>
+
+          <p class="relative text-xs text-white/80">
+            Overall Rating
+          </p>
+
+          <div class="relative mt-1 flex items-end">
+
+            <span
+              class="font-display text-4xl font-semibold leading-none text-white sm:text-5xl">
+              4.8
+            </span>
+
+            <div
+              class="ml-3 pb-1 text-sm text-[#fbbf24]">
+              ★ ★ ★ ★ ★
+            </div>
+
+          </div>
+
+          <p
+            class="relative mt-2 text-[11px] text-gray-300">
+            Based On 238 Customer Reviews
+          </p>
+
+          <div
+            class="absolute right-4 top-4 text-3xl">
+            ⭐
+          </div>
+
+        </div>
+
+
+
+        <!-- RATING DISTRIBUTION -->
+        <div
+          class="col-span-1 cursor-pointer border-b border-[#edf0f3] px-5 py-4 transition-colors duration-150 hover:bg-[#f7fbff] md:col-span-5 md:border-b-0 md:border-r">
+
+          <h3
+            class="text-sm font-semibold text-gray-900">
+            Rating Distribution
+          </h3>
+
+          <div class="mt-3 space-y-2">
+
+            <!-- 5 -->
+            <div class="flex items-center">
+
+              <span class="w-14 text-xs text-gray-500">
+                5 Stars
+              </span>
+
+              <div
+                class="mx-2 h-1.5 flex-1 overflow-hidden rounded-full bg-[#edf0f2]">
+
+                <div
+                  class="h-full w-[76%] rounded-full bg-gray-900">
+                </div>
+
+              </div>
+
+              <span
+                class="w-8 text-right text-xs text-gray-500">
+                76%
+              </span>
+
+            </div>
+
+
+            <!-- 4 -->
+            <div class="flex items-center">
+
+              <span class="w-14 text-xs text-gray-500">
+                4 Stars
+              </span>
+
+              <div
+                class="mx-2 h-1.5 flex-1 overflow-hidden rounded-full bg-[#edf0f2]">
+
+                <div
+                  class="h-full w-[10%] rounded-full bg-gray-900">
+                </div>
+
+              </div>
+
+              <span
+                class="w-8 text-right text-xs text-gray-500">
+                10%
+              </span>
+
+            </div>
+
+
+            <!-- 3 -->
+            <div class="flex items-center">
+
+              <span class="w-14 text-xs text-gray-500">
+                3 Stars
+              </span>
+
+              <div
+                class="mx-2 h-1.5 flex-1 overflow-hidden rounded-full bg-[#edf0f2]">
+
+                <div
+                  class="h-full w-[6%] rounded-full bg-gray-900">
+                </div>
+
+              </div>
+
+              <span
+                class="w-8 text-right text-xs text-gray-500">
+                6%
+              </span>
+
+            </div>
+
+
+            <!-- 2 -->
+            <div class="flex items-center">
+
+              <span class="w-14 text-xs text-gray-500">
+                2 Stars
+              </span>
+
+              <div
+                class="mx-2 h-1.5 flex-1 overflow-hidden rounded-full bg-[#edf0f2]">
+
+                <div
+                  class="h-full w-[2%] rounded-full bg-gray-900">
+                </div>
+
+              </div>
+
+              <span
+                class="w-8 text-right text-xs text-gray-500">
+                2%
+              </span>
+
+            </div>
+
+
+            <!-- 1 -->
+            <div class="flex items-center">
+
+              <span class="w-14 text-xs text-gray-500">
+                1 Star
+              </span>
+
+              <div
+                class="mx-2 h-1.5 flex-1 overflow-hidden rounded-full bg-[#edf0f2]">
+
+                <div
+                  class="h-full w-[6%] rounded-full bg-gray-900">
+                </div>
+
+              </div>
+
+              <span
+                class="w-8 text-right text-xs text-gray-500">
+                6%
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- RATING INSIGHT -->
+        <div
+          class="col-span-1 cursor-pointer px-5 py-4 transition-colors duration-150 hover:bg-[#f7fbff] md:col-span-3">
+
+          <div
+            class="flex items-center justify-between">
+
+            <h3
+              class="text-sm font-semibold text-gray-900">
+              Rating Insight
+            </h3>
+
+            <span class="text-base text-green-500">
+              ↗
+            </span>
+
+          </div>
+
+          <div class="mt-3 flex items-center">
+
+            <span class="mr-2 text-2xl">
+              📈
+            </span>
+
+            <div>
+
+              <p
+                class="text-sm font-semibold text-gray-900">
+                Up By 0.2
+              </p>
+
+              <p
+                class="text-[11px] text-gray-400">
+                This Month
+              </p>
+
+            </div>
+
+          </div>
+
+          <p
+            class="mt-3 text-[11px] text-gray-400">
+            Customers Frequently Appreciate:
+          </p>
+
+          <div class="mt-2 flex flex-wrap gap-1">
+
+            <span
+              class="rounded bg-[#ecfdf5] px-1.5 py-0.5 text-[10px] font-medium text-[#16a34a]">
+              Punctuality
+            </span>
+
+            <span
+              class="rounded bg-[#eff6ff] px-1.5 py-0.5 text-[10px] font-medium text-[#2772cc]">
+              Professionalism
+            </span>
+
+            <span
+              class="rounded bg-[#fff1f2] px-1.5 py-0.5 text-[10px] font-medium text-[#ef4444]">
+              Service Quality
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           STATISTICS
+      ================================================== -->
+      <div
+        class="mt-4 grid grid-cols-2 rounded-xl border border-[#edf0f3] bg-white lg:grid-cols-4">
+
+
+        <!-- SATISFACTION -->
+        <div
+          class="group flex h-20 cursor-pointer items-center justify-between border-b border-r border-[#edf0f3] px-4 transition-all duration-150 hover:z-10 hover:-translate-y-0.5 hover:rounded-xl hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:shadow-md lg:border-b-0">
+
+          <div>
+
+            <p
+              class="text-2xl font-semibold text-gray-900 transition-colors group-hover:text-[#2772cc]">
+              98%
+            </p>
+
+            <p
+              class="text-[10px] font-medium uppercase tracking-wide text-gray-400">
+              Customer Satisfaction
+            </p>
+
+          </div>
+
+          <span
+            class="text-2xl transition-transform duration-150 group-hover:scale-110">
+            😊
+          </span>
+
+        </div>
+
+
+        <!-- RECOMMEND -->
+        <div
+          class="group flex h-20 cursor-pointer items-center justify-between border-b border-[#edf0f3] px-4 transition-all duration-150 hover:z-10 hover:-translate-y-0.5 hover:rounded-xl hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:shadow-md lg:border-b-0 lg:border-r">
+
+          <div>
+
+            <p
+              class="text-2xl font-semibold text-gray-900 transition-colors group-hover:text-[#2772cc]">
+              92%
+            </p>
+
+            <p
+              class="text-[10px] font-medium uppercase tracking-wide text-gray-400">
+              Would Recommend
+            </p>
+
+          </div>
+
+          <span
+            class="text-2xl transition-transform duration-150 group-hover:scale-110">
+            👍
+          </span>
+
+        </div>
+
+
+        <!-- TOTAL REVIEWS -->
+        <div
+          class="group flex h-20 cursor-pointer items-center justify-between border-r border-[#edf0f3] px-4 transition-all duration-150 hover:z-10 hover:-translate-y-0.5 hover:rounded-xl hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:shadow-md">
+
+          <div>
+
+            <p
+              class="text-2xl font-semibold text-gray-900 transition-colors group-hover:text-[#2772cc]">
+              248
+            </p>
+
+            <p
+              class="text-[10px] font-medium uppercase tracking-wide text-gray-400">
+              Total Reviews
+            </p>
+
+          </div>
+
+          <span
+            class="text-2xl transition-transform duration-150 group-hover:scale-110">
+            🏅
+          </span>
+
+        </div>
+
+
+        <!-- SERVICE QUALITY -->
+        <div
+          class="group flex h-20 cursor-pointer items-center justify-between px-4 transition-all duration-150 hover:z-10 hover:-translate-y-0.5 hover:rounded-xl hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:shadow-md">
+
+          <div>
+
+            <p
+              class="text-2xl font-semibold text-gray-900 transition-colors group-hover:text-[#2772cc]">
+              4.9
+            </p>
+
+            <p
+              class="text-[10px] font-medium uppercase tracking-wide text-gray-400">
+              Service Quality
+            </p>
+
+          </div>
+
+          <span
+            class="text-2xl transition-transform duration-150 group-hover:scale-110">
+            🏆
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           STICKY REVIEWS TOOLBAR
+      ================================================== -->
+      <div
+        class="sticky top-16 z-30 -mx-4 mt-6 border-b border-transparent bg-[#fbfdff]/95 px-4 pb-3 pt-3 backdrop-blur sm:-mx-6 sm:px-6">
+
+        <!-- HEADER -->
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+
+          <div>
+
+            <h2
+              class="font-display text-base font-semibold text-gray-900 sm:text-lg">
+              Customer Reviews
+            </h2>
+
+            <p
+              class="mt-1 text-xs text-gray-400">
+              See What Customers Are Saying About Your Services.
+            </p>
+
+          </div>
+
+
+          <!-- SEARCH + FILTER -->
+          <div class="flex gap-2">
+
+            <div
+              class="flex h-9 w-full items-center rounded-md border border-gray-200 bg-white px-3 sm:w-52">
+
+              <i
+                data-lucide="search"
+                class="mr-2 h-3.5 w-3.5 text-gray-400">
+              </i>
+
+              <input
+                id="reviewSearch"
+                type="text"
+                placeholder="Search Reviews..."
+                class="w-full text-xs outline-none placeholder:text-gray-400">
+
+            </div>
+
+
+            <button
+              class="flex h-9 shrink-0 items-center rounded-md border border-gray-200 bg-white px-3 text-xs text-gray-500 transition-colors hover:border-[#c9e2f7] hover:text-[#2772cc]">
+
+              Filter
+
+              <i
+                data-lucide="sliders-horizontal"
+                class="ml-1.5 h-3.5 w-3.5">
+              </i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- FILTER TABS -->
+        <div class="mt-3 flex flex-wrap gap-2">
+
+          <button
+            class="rounded-md bg-gray-800 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-900">
+            All Reviews
+          </button>
+
+          <button
+            class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-500 hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:text-[#2772cc]">
+            5 Star
+          </button>
+
+          <button
+            class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-500 hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:text-[#2772cc]">
+            4 Star
+          </button>
+
+          <button
+            class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-500 hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:text-[#2772cc]">
+            3 Star & Below
+          </button>
+
+          <button
+            class="rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-500 hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:text-[#2772cc]">
+            With Comments
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           REVIEWS
+      ================================================== -->
+      <div
+        id="reviewsContainer"
+        class="mt-4 space-y-3">
+      </div>
+
+
+
+      <!-- =================================================
+           PAGINATION
+      ================================================== -->
+      <div
+        class="mt-6 flex flex-col items-center justify-between gap-3 sm:flex-row">
+
+        <p
+          id="reviewCount"
+          class="text-xs text-gray-600">
+        </p>
+
+        <div
+          id="pagination"
+          class="flex items-center">
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+<script>
+
+lucide.createIcons();
+
+
+/* =====================================================
+   STICKY TOOLBAR SHADOW
+====================================================== */
+
+const stickyToolbar =
+  document.querySelector(".sticky.top-16");
+
+if (stickyToolbar) {
+
+  const toggleStickyShadow = () => {
+
+    const stuck =
+      stickyToolbar.getBoundingClientRect().top <= 64;
+
+    stickyToolbar.classList.toggle(
+      "shadow-sm",
+      stuck
+    );
+
+    stickyToolbar.classList.toggle(
+      "border-b-[#edf0f3]",
+      stuck
+    );
+
+  };
+
+  window.addEventListener(
+    "scroll",
+    toggleStickyShadow
+  );
+
+  toggleStickyShadow();
+
+}
+
+
+
+/* =====================================================
+   SIDEBAR
+====================================================== */
+
+const sidebar =
+  document.getElementById("sidebar");
+
+const overlay =
+  document.getElementById("sidebarOverlay");
+
+const openSidebar =
+  document.getElementById("openSidebar");
+
+const closeSidebar =
+  document.getElementById("closeSidebar");
+
+
+openSidebar.addEventListener("click", () => {
+
+  sidebar.classList.remove(
+    "-translate-x-full"
+  );
+
+  overlay.classList.remove(
+    "hidden"
+  );
+
+});
+
+
+const closeSidebarFn = () => {
+
+  sidebar.classList.add(
+    "-translate-x-full"
+  );
+
+  overlay.classList.add(
+    "hidden"
+  );
+
+};
+
+
+closeSidebar.addEventListener(
+  "click",
+  closeSidebarFn
+);
+
+overlay.addEventListener(
+  "click",
+  closeSidebarFn
+);
+
+
+/* Close mobile sidebar after clicking nav */
+
+sidebar.querySelectorAll("nav a").forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    if (window.innerWidth < 1024) {
+      closeSidebarFn();
+    }
+
+  });
+
+});
+
+
+/* Reset sidebar when resizing */
+
+window.addEventListener("resize", () => {
+
+  if (window.innerWidth >= 1024) {
+
+    sidebar.classList.remove(
+      "-translate-x-full"
+    );
+
+    overlay.classList.add(
+      "hidden"
+    );
+
+  } else {
+
+    sidebar.classList.add(
+      "-translate-x-full"
+    );
+
+  }
+
+});
+
+
+
+/* =====================================================
+   REVIEW DATA
+====================================================== */
+
+const reviews = [
+
+  {
+    name: "Amit Sharma",
+    date: "06 Aug 2026",
+    service: "AC Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=51",
+    comment: "Excellent service! The technician arrived on time and fixed the AC issue quickly. He also explained what went wrong and suggested tips to prevent recurrence. Very professional and highly recommended."
+  },
+
+  {
+    name: "Priya Mehta",
+    date: "03 Aug 2026",
+    service: "Refrigerator Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=47",
+    comment: "Very satisfied with the repair work. The fridge is working perfectly now. The booking process was smooth and hassle-free."
+  },
+
+  {
+    name: "Rahul Das",
+    date: "02 Aug 2026",
+    service: "Electrical Service",
+    rating: 4,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=13",
+    comment: "Good experience overall. The electrician was knowledgeable, but arrived about 10 minutes late. Job was done neatly though."
+  },
+
+  {
+    name: "Sneha Roy",
+    date: "01 Aug 2026",
+    service: "Washing Machine Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=32",
+    comment: "The technician was very professional and completed the repair quickly. Everything is working perfectly."
+  },
+
+  {
+    name: "Arjun Singh",
+    date: "30 Jul 2026",
+    service: "Plumbing",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=14",
+    comment: "Excellent plumbing service. The issue was identified quickly and fixed without any hassle."
+  },
+
+  {
+    name: "Neha Kapoor",
+    date: "29 Jul 2026",
+    service: "AC Repair",
+    rating: 4,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=44",
+    comment: "Good service and reasonable pricing. The technician was polite and explained the issue clearly."
+  },
+
+  {
+    name: "Rohan Gupta",
+    date: "27 Jul 2026",
+    service: "Electrical Service",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=15",
+    comment: "Very quick response and professional work. I would definitely recommend this service."
+  },
+
+  {
+    name: "Ananya Sen",
+    date: "25 Jul 2026",
+    service: "TV Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=25",
+    comment: "Great experience from booking to completion. The technician arrived on time."
+  },
+
+  {
+    name: "Vikram Roy",
+    date: "22 Jul 2026",
+    service: "AC Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=18",
+    comment: "The AC was repaired properly and the technician gave useful maintenance advice."
+  },
+
+  {
+    name: "Soham Dutta",
+    date: "20 Jul 2026",
+    service: "Plumbing",
+    rating: 4,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=22",
+    comment: "Good work overall. The plumber was experienced and solved the leakage issue."
+  },
+
+  {
+    name: "Riya Das",
+    date: "18 Jul 2026",
+    service: "Refrigerator Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=29",
+    comment: "Very happy with the service. The refrigerator is working perfectly now."
+  },
+
+  {
+    name: "Kunal Sharma",
+    date: "16 Jul 2026",
+    service: "Electrical Service",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=33",
+    comment: "Fast response and excellent service quality. Highly recommended."
+  },
+
+  {
+    name: "Puja Ghosh",
+    date: "14 Jul 2026",
+    service: "Washing Machine Repair",
+    rating: 4,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=48",
+    comment: "The technician fixed the washing machine and explained the problem properly."
+  },
+
+  {
+    name: "Abhishek Roy",
+    date: "12 Jul 2026",
+    service: "AC Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=17",
+    comment: "Excellent service and very professional technician."
+  },
+
+  {
+    name: "Tina Paul",
+    date: "10 Jul 2026",
+    service: "Plumbing",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=45",
+    comment: "Very smooth booking process and the service was completed quickly."
+  },
+
+  {
+    name: "Sayan Bose",
+    date: "08 Jul 2026",
+    service: "TV Repair",
+    rating: 4,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=11",
+    comment: "Good service. The technician was knowledgeable and polite."
+  },
+
+  {
+    name: "Moumita Sen",
+    date: "06 Jul 2026",
+    service: "AC Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=36",
+    comment: "Very satisfied with the overall experience."
+  },
+
+  {
+    name: "Raj Mallick",
+    date: "04 Jul 2026",
+    service: "Electrical Service",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=6",
+    comment: "Professional service and quick response."
+  },
+
+  {
+    name: "Ishita Roy",
+    date: "02 Jul 2026",
+    service: "Refrigerator Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=40",
+    comment: "Excellent work. Everything was explained clearly."
+  },
+
+  {
+    name: "Ayan Das",
+    date: "30 Jun 2026",
+    service: "Plumbing",
+    rating: 4,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=8",
+    comment: "Good experience and reasonable service."
+  },
+
+  {
+    name: "Debolina Sen",
+    date: "28 Jun 2026",
+    service: "AC Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=30",
+    comment: "The technician was punctual and fixed the issue very quickly."
+  },
+
+  {
+    name: "Ritwik Paul",
+    date: "26 Jun 2026",
+    service: "Electrical Service",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=20",
+    comment: "Excellent service. I would definitely recommend FixNow."
+  },
+
+  {
+    name: "Srijita Roy",
+    date: "24 Jun 2026",
+    service: "TV Repair",
+    rating: 4,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=43",
+    comment: "Good quality service and helpful technician."
+  },
+
+  {
+    name: "Anirban Sen",
+    date: "22 Jun 2026",
+    service: "AC Repair",
+    rating: 5,
+    verified: true,
+    avatar: "https://i.pravatar.cc/80?img=4",
+    comment: "Very professional service from start to finish."
+  }
+
+];
+
+
+
+/* =====================================================
+   REVIEW VARIABLES
+====================================================== */
+
+const reviewsPerPage = 8;
+
+let currentPage = 1;
+
+const reviewsContainer =
+  document.getElementById(
+    "reviewsContainer"
+  );
+
+const pagination =
+  document.getElementById(
+    "pagination"
+  );
+
+const reviewCount =
+  document.getElementById(
+    "reviewCount"
+  );
+
+const searchInput =
+  document.getElementById(
+    "reviewSearch"
+  );
+
+
+
+/* =====================================================
+   GENERATE STARS
+====================================================== */
+
+function generateStars(rating) {
+
+  let stars = "";
+
+  for (
+    let i = 1;
+    i <= 5;
+    i++
+  ) {
+
+    stars +=
+      i <= rating
+        ? `<span class="text-[#fbbf24]">★</span>`
+        : `<span class="text-gray-300">★</span>`;
+
+  }
+
+  return stars;
+
+}
+
+
+
+/* =====================================================
+   DISPLAY REVIEWS
+====================================================== */
+
+function displayReviews() {
+
+  const searchValue =
+    searchInput.value
+      .toLowerCase()
+      .trim();
+
+
+  const filteredReviews =
+    reviews.filter((review) =>
+
+      review.name
+        .toLowerCase()
+        .includes(searchValue)
+
+      ||
+
+      review.service
+        .toLowerCase()
+        .includes(searchValue)
+
+      ||
+
+      review.comment
+        .toLowerCase()
+        .includes(searchValue)
+
+    );
+
+
+  const totalPages =
+    Math.ceil(
+      filteredReviews.length /
+      reviewsPerPage
+    );
+
+
+  if (
+    currentPage > totalPages &&
+    totalPages > 0
+  ) {
+
+    currentPage = totalPages;
+
+  }
+
+
+  const start =
+    (currentPage - 1) *
+    reviewsPerPage;
+
+  const end =
+    start + reviewsPerPage;
+
+
+  const pageReviews =
+    filteredReviews.slice(
+      start,
+      end
+    );
+
+
+  reviewsContainer.innerHTML = "";
+
+
+  pageReviews.forEach(
+    (review) => {
+
+      const reviewCard =
+        document.createElement("div");
+
+
+      reviewCard.className =
+        "group cursor-pointer rounded-lg border border-[#edf0f3] bg-white px-4 py-3.5 transition-all duration-150 hover:-translate-y-0.5 hover:border-[#c9e2f7] hover:bg-[#f7fbff] hover:shadow-md sm:px-5";
+
+
+      reviewCard.innerHTML = `
+
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+
+          <!-- CUSTOMER -->
+          <div class="flex min-w-0">
+
+            <div
+              class="mr-3 h-9 w-9 shrink-0 overflow-hidden rounded-full ring-1 ring-[#edf0f3]">
+
+              <img
+                src="${review.avatar}"
+                alt="${review.name}"
+                class="h-full w-full object-cover"
+                loading="lazy">
+
+            </div>
+
+
+            <div class="min-w-0">
+
+              <div
+                class="flex flex-wrap items-center gap-1.5">
+
+                <h3
+                  class="text-sm font-semibold text-gray-900">
+                  ${review.name}
+                </h3>
+
+                ${
+                  review.verified
+                    ? `
+                      <span
+                        class="inline-flex items-center gap-0.5 rounded bg-[#ecfdf5] px-1.5 py-0.5 text-[10px] font-medium text-[#16a34a]">
+
+                        <i
+                          data-lucide="badge-check"
+                          class="h-2.5 w-2.5">
+                        </i>
+
+                        Verified
+
+                      </span>
+                    `
+                    : ""
+                }
+
+              </div>
+
+
+              <p
+                class="mt-0.5 text-[11px] text-gray-400">
+
+                ${review.date}
+                •
+                ${review.service}
+
+              </p>
+
+
+              <p
+                class="mt-1.5 max-w-2xl text-sm leading-relaxed text-gray-600">
+
+                ${review.comment}
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- RATING -->
+          <div
+            class="flex shrink-0 items-center justify-between sm:ml-4 sm:justify-normal">
+
+            <div
+              class="text-sm leading-none">
+
+              ${generateStars(
+                review.rating
+              )}
+
+            </div>
+
+
+            <button
+              class="ml-3 text-gray-400 hover:text-gray-600">
+
+              <i
+                data-lucide="more-vertical"
+                class="h-4 w-4">
+              </i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      reviewsContainer.appendChild(
+        reviewCard
+      );
+
+    }
+  );
+
+
+  reviewCount.innerHTML =
+    filteredReviews.length === 0
+
+      ? "No reviews found."
+
+      : `Showing ${start + 1} - ${Math.min(
+          end,
+          filteredReviews.length
+        )} out of ${
+          filteredReviews.length
+        } reviews`;
+
+
+  createPagination(
+    totalPages
+  );
+
+  lucide.createIcons();
+
+}
+
+
+
+/* =====================================================
+   PAGINATION
+====================================================== */
+
+function createPagination(
+  totalPages
+) {
+
+  pagination.innerHTML = "";
+
+
+  if (totalPages <= 1) {
+    return;
+  }
+
+
+  /* PREVIOUS */
+
+  const previousButton =
+    document.createElement("button");
+
+
+  previousButton.className =
+    `mr-1 flex h-8 w-8 items-center justify-center rounded border border-[#dce3e8] bg-white text-[#2772cc] ${
+      currentPage === 1
+        ? "cursor-not-allowed opacity-40"
+        : "hover:bg-gray-50"
+    }`;
+
+
+  previousButton.innerHTML = `
+    <i
+      data-lucide="chevron-left"
+      class="h-4 w-4">
+    </i>
+  `;
+
+
+  previousButton.disabled =
+    currentPage === 1;
+
+
+  previousButton.addEventListener(
+    "click",
+    () => {
+
+      if (currentPage > 1) {
+
+        currentPage--;
+
+        displayReviews();
+
+      }
+
+    }
+  );
+
+
+  pagination.appendChild(
+    previousButton
+  );
+
+
+
+  /* PAGE NUMBERS */
+
+  for (
+    let page = 1;
+    page <= totalPages;
+    page++
+  ) {
+
+    const pageButton =
+      document.createElement("button");
+
+
+    pageButton.textContent =
+      page;
+
+
+    pageButton.className =
+      `mr-1 flex h-8 min-w-[2rem] items-center justify-center rounded px-2 text-sm font-medium ${
+        page === currentPage
+          ? "bg-[#2772cc] text-white"
+          : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+      }`;
+
+
+    pageButton.addEventListener(
+      "click",
+      () => {
+
+        currentPage = page;
+
+        displayReviews();
+
+      }
+    );
+
+
+    pagination.appendChild(
+      pageButton
+    );
+
+  }
+
+
+
+  /* NEXT */
+
+  const nextButton =
+    document.createElement("button");
+
+
+  nextButton.className =
+    `flex h-8 w-8 items-center justify-center rounded border border-[#dce3e8] bg-white text-[#2772cc] ${
+      currentPage === totalPages
+        ? "cursor-not-allowed opacity-40"
+        : "hover:bg-gray-50"
+    }`;
+
+
+  nextButton.innerHTML = `
+    <i
+      data-lucide="chevron-right"
+      class="h-4 w-4">
+    </i>
+  `;
+
+
+  nextButton.disabled =
+    currentPage === totalPages;
+
+
+  nextButton.addEventListener(
+    "click",
+    () => {
+
+      if (
+        currentPage < totalPages
+      ) {
+
+        currentPage++;
+
+        displayReviews();
+
+      }
+
+    }
+  );
+
+
+  pagination.appendChild(
+    nextButton
+  );
+
+
+  lucide.createIcons();
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+====================================================== */
+
+searchInput.addEventListener(
+  "input",
+  () => {
+
+    currentPage = 1;
+
+    displayReviews();
+
+  }
+);
+
+
+
+/* =====================================================
+   INITIAL LOAD
+====================================================== */
+
+displayReviews();
+
+</script>
+
+</body>
+</html>

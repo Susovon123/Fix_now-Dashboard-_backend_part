@@ -1,1910 +1,1280 @@
- <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>FixNow Dashboard</title>
+    <title>FixNow — Service Provider Dashboard</title>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
- <link rel="stylesheet" href="css/style.css">
-  <!-- Chart JS -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+    <!-- =====================================================
+       TAILWIND CSS
+  ====================================================== -->
 
-<body class="min-h-screen overflow-x-hidden bg-[#f8fbfd] text-[#030712]">
+    <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- =====================================================
+       CHART JS
+  ====================================================== -->
 
-  <!-- =========================================================
-       MOBILE OVERLAY
-  ========================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 
-  <div
-    id="overlay"
-    class="fixed inset-0 z-40 hidden bg-black/30 lg:hidden"
-  ></div>
+    <!-- =====================================================
+       GOOGLE FONTS
+  ====================================================== -->
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- =========================================================
-       SIDEBAR
-  ========================================================== -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <aside
-    id="sidebar"
-    class="
-      fixed
-      left-0
-      top-0
-      z-50
-      h-screen
-      w-[245px]
-      -translate-x-full
-      border-r
-      border-[#e5edf2]
-      bg-white
-      transition-transform
-      duration-300
-      lg:translate-x-0
-    "
-  >
+    <!-- =====================================================
+       TAILWIND CONFIG
+  ====================================================== -->
 
-    <!-- Logo -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+              albert: ["Albert Sans", "sans-serif"],
+            },
 
-    <div
-      class="
-        flex
-        h-[80px]
-        items-center
-        border-b
-        border-[#edf1f4]
-        px-6
-      "
-    >
+            colors: {
+              c1: "#6b7280",
+              c2: "#ffffff",
+              c3: "#d9d9d9",
+              c4: "#2772cc",
+              c5: "#244f84",
+              c6: "#030712",
+              c7: "#99d7f7",
+              c8: "#f3f4f8",
+              c9: "#1f2937",
+              c10: "#1a3151",
+              c11: "#e5e7eb",
+              c12: "#45a5ec",
+              c13: "#d97706",
+              c14: "#f0f9fe",
+              c15: "#f59e0b",
+              c16: "#fbbf24",
+              c17: "#d1d5db",
+            },
 
-      <div>
+            boxShadow: {
+              soft: "0 2px 10px rgba(26, 49, 81, 0.06)",
 
-        <h1
-          class="
-            text-[22px]
-            font-bold
-            tracking-[-1px]
-            text-[#2772cc]
-          "
-        >
-          FIX<span class="text-[#45a5ec]">NOW</span>
-        </h1>
+              card: "0 4px 20px rgba(26, 49, 81, 0.08)",
+            },
 
-        <div
-          class="
-            h-[2px]
-            w-[43px]
-            rounded-full
-            bg-[#45a5ec]
-          "
-        ></div>
+            borderRadius: {
+              xl2: "1.25rem",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
 
-      </div>
+  <body class="min-h-screen w-full overflow-x-hidden bg-c8 text-c6 font-albert">
+    <!-- =====================================================
+       MAIN WRAPPER
+  ====================================================== -->
 
+    <div class="flex min-h-screen w-full">
+      <!-- =====================================================
+         STICKY SIDEBAR
+    ====================================================== -->
 
-      <button
-        id="closeSidebar"
-        class="
-          ml-auto
-          flex
-          h-8
-          w-8
-          items-center
-          justify-center
-          rounded-lg
-          text-gray-500
-          lg:hidden
-        "
+      <aside
+        class="hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-[248px] lg:shrink-0 lg:flex-col bg-white border-r border-c11 px-4 py-5"
       >
-        ✕
-      </button>
+        <!-- =================================================
+           LOGO
+      ================================================== -->
 
-    </div>
-
-
-    <!-- Navigation -->
-
-    <nav class="px-4 py-6">
-
-      <!-- Dashboard -->
-
-      <a
-        href="#"
-        class="
-          mb-2
-          flex
-          items-center
-          gap-3
-          rounded-xl
-          bg-[#edf8fe]
-          px-4
-          py-3
-          text-[12px]
-          font-semibold
-          text-[#2772cc]
-        "
-      >
-        <span class="text-[15px]">▦</span>
-        Dashboard
-      </a>
-
-
-      <!-- Bookings -->
-
-      <a
-        href="#"
-        class="
-          mb-2
-          flex
-          items-center
-          gap-3
-          rounded-xl
-          px-4
-          py-3
-          text-[12px]
-          text-[#64748b]
-          hover:bg-[#f5f9fc]
-        "
-      >
-        <span>▣</span>
-        Bookings
-      </a>
-
-
-      <!-- Service -->
-
-      <a
-        href="#"
-        class="
-          mb-2
-          flex
-          items-center
-          gap-3
-          rounded-xl
-          px-4
-          py-3
-          text-[12px]
-          text-[#64748b]
-          hover:bg-[#f5f9fc]
-        "
-      >
-        <span>⚒</span>
-        Service Management
-      </a>
-
-
-      <!-- Customers -->
-
-      <a
-        href="#"
-        class="
-          mb-2
-          flex
-          items-center
-          gap-3
-          rounded-xl
-          px-4
-          py-3
-          text-[12px]
-          text-[#64748b]
-          hover:bg-[#f5f9fc]
-        "
-      >
-
-        <span>♙</span>
-
-        Customers
-
-        <span
-          class="
-            ml-auto
-            flex
-            h-5
-            w-5
-            items-center
-            justify-center
-            rounded-full
-            bg-[#dff3ff]
-            text-[9px]
-            text-[#2772cc]
-          "
-        >
-          8
-        </span>
-
-      </a>
-
-
-      <!-- Profile -->
-
-      <a
-        href="#"
-        class="
-          mb-2
-          flex
-          items-center
-          gap-3
-          rounded-xl
-          px-4
-          py-3
-          text-[12px]
-          text-[#64748b]
-          hover:bg-[#f5f9fc]
-        "
-      >
-        <span>♙</span>
-        Profile
-      </a>
-
-
-      <!-- Settings -->
-
-      <a
-        href="#"
-        class="
-          mb-2
-          flex
-          items-center
-          gap-3
-          rounded-xl
-          px-4
-          py-3
-          text-[12px]
-          text-[#64748b]
-          hover:bg-[#f5f9fc]
-        "
-      >
-        <span>⚙</span>
-        Settings
-      </a>
-
-
-      <!-- Logout -->
-
-      <a
-        href="#"
-        class="
-          flex
-          items-center
-          gap-3
-          rounded-xl
-          px-4
-          py-3
-          text-[12px]
-          text-[#64748b]
-          hover:bg-red-50
-          hover:text-red-500
-        "
-      >
-        <span>↪</span>
-        Log Out
-      </a>
-
-    </nav>
-
-
-    <!-- Support -->
-
-    <div
-      class="
-        absolute
-        bottom-5
-        left-4
-        right-4
-        rounded-2xl
-        bg-gradient-to-br
-        from-[#edf8ff]
-        to-[#dcefff]
-        p-4
-      "
-    >
-
-      <div
-        class="
-          mb-3
-          flex
-          h-8
-          w-8
-          items-center
-          justify-center
-          rounded-full
-          bg-white
-          text-[#2772cc]
-        "
-      >
-        ♧
-      </div>
-
-      <p class="text-[11px] font-semibold text-[#244f84]">
-        Need Assistance?
-      </p>
-
-      <p class="mt-1 text-[9px] leading-4 text-[#6b7280]">
-        Contact our support team for any help.
-      </p>
-
-      <button
-        class="
-          mt-3
-          rounded-lg
-          border
-          border-[#45a5ec]
-          bg-white
-          px-3
-          py-2
-          text-[9px]
-          font-semibold
-          text-[#2772cc]
-        "
-      >
-        Contact Support
-      </button>
-
-    </div>
-
-  </aside>
-
-
-
-  <!-- =========================================================
-       MAIN
-  ========================================================== -->
-
-  <main class="min-h-screen lg:ml-[245px]">
-
-
-    <!-- =======================================================
-         HEADER
-    ======================================================== -->
-
-    <header
-      class="
-        sticky
-        top-0
-        z-30
-        border-b
-        border-[#e5edf2]
-        bg-white/95
-        px-4
-        py-3
-        backdrop-blur
-        sm:px-6
-        lg:px-8
-      "
-    >
-
-      <div class="flex items-center justify-between">
-
-
-        <!-- Left -->
-
-        <div class="flex items-center">
-
-          <button
-            id="openSidebar"
-            class="
-              mr-3
-              flex
-              h-9
-              w-9
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-[#e5edf2]
-              text-[#244f84]
-              lg:hidden
-            "
+        <div class="mb-7 flex items-center gap-2 px-2">
+          <div
+            class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-c4 to-c12 shadow-soft"
           >
-            ☰
-          </button>
-
-
-          <div>
-
-            <h2
-              class="
-                text-[17px]
-                font-semibold
-                text-[#1a3151]
-              "
-            >
-              Hi, Rahul!
-            </h2>
-
-            <p class="text-[9px] text-[#6b7280]">
-              Welcome to FixNow | Ready to start?
-            </p>
-
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M14.5 3.5L4 14l4 1-1.5 5.5L17 10l-4-1 1.5-5.5z"
+                stroke="white"
+                stroke-width="1.6"
+                stroke-linejoin="round"
+                fill="white"
+              />
+            </svg>
           </div>
 
+          <span class="font-outfit text-xl font-bold text-c5"> FixNow </span>
         </div>
 
+        <!-- =================================================
+           NAVIGATION
+      ================================================== -->
 
+        <nav class="flex flex-col gap-1">
+          <!-- DASHBOARD -->
 
-        <!-- Right -->
-
-        <div class="flex items-center gap-2 sm:gap-3">
-
-
-          <!-- Search -->
-
-          <div
-            class="
-              hidden
-              h-9
-              w-[230px]
-              items-center
-              rounded-full
-              border
-              border-[#e5edf2]
-              bg-white
-              px-3
-              md:flex
-            "
+          <a
+            href="#"
+            class="flex items-center gap-3 rounded-xl bg-gradient-to-r from-c4 to-c12 px-3 py-2.5 text-[13px] font-medium text-white shadow-[0_6px_16px_rgba(39,114,204,0.28)]"
           >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <rect x="3" y="3" width="7" height="9" rx="1.5" />
 
-            <span class="text-gray-400">
-              ⌕
-            </span>
+              <rect x="14" y="3" width="7" height="5" rx="1.5" />
 
-            <input
-              type="text"
-              placeholder="Search for bookings, jobs..."
-              class="
-                ml-2
-                w-full
-                bg-transparent
-                text-[9px]
-                outline-none
-              "
-            />
+              <rect x="14" y="12" width="7" height="9" rx="1.5" />
+
+              <rect x="3" y="16" width="7" height="5" rx="1.5" />
+            </svg>
+
+            Dashboard
+          </a>
+
+          <!-- BOOKINGS -->
+
+          <a
+            href="#"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-c1 hover:bg-c14 hover:text-c5"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <rect x="3" y="4" width="18" height="17" rx="2" />
+
+              <path d="M8 2v4M16 2v4M3 9h18" />
+            </svg>
+
+            Bookings
 
             <span
-              class="
-                flex
-                h-5
-                w-5
-                items-center
-                justify-center
-                rounded-full
-                bg-[#edf8ff]
-                text-[9px]
-                text-[#2772cc]
-              "
+              class="ml-auto rounded-full bg-c4 px-1.5 py-0.5 text-[9px] font-bold text-white"
             >
-              ⌕
+              3
             </span>
+          </a>
 
+          <!-- SERVICE MANAGEMENT -->
+
+          <a
+            href="#"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-c1 hover:bg-c14 hover:text-c5"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M14.7 6.3a4 4 0 11-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 015.4-5.4l-2.6 2.6-2-2 2.6-2.6z"
+              />
+            </svg>
+
+            Service Management
+          </a>
+
+          <!-- CUSTOMER INSIGHTS -->
+
+          <a
+            href="#"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-c1 hover:bg-c14 hover:text-c5"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M3 12h4l2 6 4-14 2 8h6" />
+            </svg>
+
+            Customer Insights
+
+            <span
+              class="ml-auto rounded-full bg-c4 px-1.5 py-0.5 text-[9px] font-bold text-white"
+            >
+              5
+            </span>
+          </a>
+
+          <!-- PROFILE -->
+
+          <a
+            href="#"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-c1 hover:bg-c14 hover:text-c5"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="8" r="4" />
+
+              <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+            </svg>
+
+            Profile
+          </a>
+
+          <!-- SETTINGS -->
+
+          <a
+            href="#"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-c1 hover:bg-c14 hover:text-c5"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="12" r="3" />
+
+              <path
+                d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.6V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.6-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.6V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.6 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.6 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.6 1z"
+              />
+            </svg>
+
+            Settings
+          </a>
+
+          <!-- LOGOUT -->
+
+          <a
+            href="#"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-c1 hover:bg-c14 hover:text-c5"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+
+              <path d="M16 17l5-5-5-5M21 12H9" />
+            </svg>
+
+            Log Out
+          </a>
+        </nav>
+
+        <!-- =================================================
+           SUPPORT
+      ================================================== -->
+
+        <div class="mt-auto pt-5">
+          <div
+            class="relative overflow-hidden rounded-xl2 bg-gradient-to-br from-c5 to-c10 p-4 text-white"
+          >
+            <div
+              class="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-white/10"
+            ></div>
+
+            <p class="mb-1 font-outfit text-[14px] font-semibold">
+              Need Assistance?
+            </p>
+
+            <p class="mb-4 text-[11px] leading-snug text-white/70">
+              Contact our support team anytime for quick help.
+            </p>
+
+            <button
+              class="w-full rounded-lg bg-white py-2 text-[12px] font-semibold text-c5"
+            >
+              Contact Support
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- =====================================================
+         MAIN SECTION
+    ====================================================== -->
+
+      <div class="flex min-w-0 flex-1 flex-col">
+        <!-- =================================================
+           HEADER
+      ================================================== -->
+
+        <header
+          class="sticky top-0 z-30 flex items-center justify-between border-b border-c11 bg-c8/90 px-4 py-3 backdrop-blur sm:px-6"
+        >
+          <!-- GREETING -->
+
+          <div class="min-w-0 max-w-[145px] sm:max-w-none">
+            <h1
+              class="truncate font-outfit text-base font-semibold text-c9 sm:text-lg"
+            >
+              Hi, Rahul! 👋
+            </h1>
+
+            <p class="truncate text-[10px] text-c1 sm:text-[11px]">
+              Welcome to FixNow! Ready to start?
+            </p>
           </div>
 
+          <!-- SEARCH -->
 
-          <!-- Notification -->
+          <div class="mx-4 hidden max-w-md flex-1 lg:flex lg:items-center">
+            <div class="relative w-full">
+              <svg
+                class="absolute left-3 top-1/2 -translate-y-1/2"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#9ca3af"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="7" />
 
-          <button
-            class="
-              flex
-              h-9
-              w-9
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-[#e5edf2]
-              bg-white
-              text-[#64748b]
-            "
-          >
-            ♡
-          </button>
+                <path d="M21 21l-4.3-4.3" />
+              </svg>
 
+              <input
+                type="text"
+                placeholder="Search for bookings, jobs..."
+                class="w-full rounded-full border border-c11 bg-white py-2 pl-9 pr-4 text-[11px] placeholder:text-c1 focus:outline-none"
+              />
+            </div>
+          </div>
 
-          <!-- User -->
+          <!-- ACTIONS -->
+
+          <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+            <!-- MOBILE SEARCH -->
+
+            <button
+              class="flex h-8 w-8 items-center justify-center rounded-full border border-c11 bg-white lg:hidden"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#374151"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="7" />
+
+                <path d="M21 21l-4.3-4.3" />
+              </svg>
+            </button>
+
+            <!-- NOTIFICATION -->
+
+            <button
+              class="relative flex h-8 w-8 items-center justify-center rounded-full border border-c11 bg-white"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#374151"
+                stroke-width="2"
+              >
+                <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+
+                <path d="M13.7 21a2 2 0 01-3.4 0" />
+              </svg>
+
+              <span
+                class="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full border border-c8 bg-c15"
+              ></span>
+            </button>
+
+            <!-- PROFILE -->
+
+            <div class="flex items-center gap-2">
+              <img
+                src="https://i.pravatar.cc/64?img=13"
+                class="h-8 w-8 rounded-full object-cover"
+                alt="Rahul Sharma"
+              />
+
+              <div class="hidden leading-tight sm:block">
+                <p class="text-[11px] font-semibold text-c9">Rahul Sharma</p>
+
+                <p class="text-[9px] text-c1">Service Provider</p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- =================================================
+           CONTENT
+      ================================================== -->
+
+        <main class="flex-1 p-2 sm:p-4 lg:p-5">
+          <!-- =================================================
+             TOP DASHBOARD GRID
+        ================================================== -->
 
           <div
-            class="
-              flex
-              items-center
-              gap-2
-              rounded-full
-              border
-              border-[#e5edf2]
-              bg-white
-              py-1
-              pl-1
-              pr-2
-            "
+            class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
           >
-
-            <div
-              class="
-                flex
-                h-7
-                w-7
-                items-center
-                justify-center
-                rounded-full
-                bg-[#f1c7a5]
-                text-[8px]
-                font-bold
-                text-white
-              "
-            >
-              RS
-            </div>
-
-            <div class="hidden sm:block">
-
-              <p class="text-[9px] font-semibold text-[#1f2937]">
-                Rahul Sharma
-              </p>
-
-              <p class="text-[7px] text-green-500">
-                ● Service Provider
-              </p>
-
-            </div>
-
-            <span class="text-[9px] text-gray-400">
-              ▾
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </header>
-
-
-
-    <!-- =======================================================
-         CONTENT
-    ======================================================== -->
-
-    <section class="p-4 sm:p-5 lg:p-7">
-
-      <div class="mx-auto max-w-[1450px]">
-
-        <div
-          class="
-            grid
-            grid-cols-1
-            gap-4
-            md:grid-cols-2
-            xl:grid-cols-12
-          "
-        >
-
-
-          <!-- =================================================
-               TODAY JOBS
+            <!-- =================================================
+               TODAY'S JOBS
           ================================================== -->
 
-          <div
-            class="
-              rounded-2xl
-              border
-              border-[#e5edf2]
-              bg-white
-              p-4
-              shadow-sm
-              xl:col-span-3
-            "
-          >
+            <div
+              class="min-w-0 rounded-xl2 bg-gradient-to-b from-c10 to-c5 p-4 text-white shadow-card"
+            >
+              <div class="mb-3 flex items-center justify-between">
+                <h3 class="font-outfit text-[13px] font-semibold">
+                  Today's Jobs
+                </h3>
 
-            <div class="mb-3 flex justify-between">
+                <span class="text-[10px] font-semibold text-c7"> 3/6 </span>
+              </div>
 
-              <h3 class="text-[13px] font-semibold text-[#1a3151]">
-                Today's Jobs
-              </h3>
+              <ul
+                class="flex max-h-[190px] flex-col gap-3 overflow-y-auto text-[10px]"
+              >
+                <!-- JOB 1 -->
 
-              <span class="text-[9px] text-gray-400">
-                3/6
-              </span>
+                <li class="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    checked
+                    class="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-[5px] border-[1.5px] border-white/40 bg-white/5 checked:border-c12 checked:bg-c12"
+                  />
 
+                  <div class="min-w-0">
+                    <p class="font-medium leading-tight">
+                      AC Repair & Servicing
+                    </p>
+
+                    <p class="text-[9px] text-white/50">09:00 AM – 10:30 AM</p>
+                  </div>
+                </li>
+
+                <!-- JOB 2 -->
+
+                <li class="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    checked
+                    class="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-[5px] border-[1.5px] border-white/40 bg-white/5 checked:border-c12 checked:bg-c12"
+                  />
+
+                  <div class="min-w-0">
+                    <p class="font-medium leading-tight">
+                      Washing Machine Repair
+                    </p>
+
+                    <p class="text-[9px] text-white/50">11:00 AM – 12:00 PM</p>
+                  </div>
+                </li>
+
+                <!-- JOB 3 -->
+
+                <li class="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    checked
+                    class="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-[5px] border-[1.5px] border-white/40 bg-white/5 checked:border-c12 checked:bg-c12"
+                  />
+
+                  <div class="min-w-0">
+                    <p class="font-medium leading-tight">Refrigerator Repair</p>
+
+                    <p class="text-[9px] text-white/50">12:30 PM – 01:30 PM</p>
+                  </div>
+                </li>
+
+                <!-- JOB 4 -->
+
+                <li class="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    class="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-[5px] border-[1.5px] border-white/40 bg-white/5 checked:border-c12 checked:bg-c12"
+                  />
+
+                  <div class="min-w-0">
+                    <p class="font-medium leading-tight">
+                      AC Repair & Servicing
+                    </p>
+
+                    <p class="text-[9px] text-white/50">02:00 PM – 03:00 PM</p>
+                  </div>
+                </li>
+
+                <!-- JOB 5 -->
+
+                <li class="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    class="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-[5px] border-[1.5px] border-white/40 bg-white/5 checked:border-c12 checked:bg-c12"
+                  />
+
+                  <div class="min-w-0">
+                    <p class="font-medium leading-tight">Ceiling Fan Repair</p>
+
+                    <p class="text-[9px] text-white/50">03:30 PM – 04:15 PM</p>
+                  </div>
+                </li>
+
+                <!-- JOB 6 -->
+
+                <li class="flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    class="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-[5px] border-[1.5px] border-white/40 bg-white/5 checked:border-c12 checked:bg-c12"
+                  />
+
+                  <div class="min-w-0">
+                    <p class="font-medium leading-tight">Delivery Assistance</p>
+
+                    <p class="text-[9px] text-white/50">04:45 PM – 05:15 PM</p>
+                  </div>
+                </li>
+              </ul>
             </div>
 
-
-            <div class="space-y-2">
-
-
-              <!-- Job -->
-
-              <div
-                class="
-                  flex
-                  items-center
-                  rounded-xl
-                  bg-[#244f84]
-                  p-2.5
-                "
-              >
-
-                <div
-                  class="
-                    mr-2
-                    flex
-                    h-8
-                    w-8
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-white/20
-                    text-[9px]
-                    text-white
-                  "
-                >
-                  AC
-                </div>
-
-                <div class="min-w-0 flex-1">
-
-                  <p class="truncate text-[9px] font-semibold text-white">
-                    AC Repair & Servicing
-                  </p>
-
-                  <p class="truncate text-[8px] text-white/60">
-                    10:00 AM • Kolkata
-                  </p>
-
-                </div>
-
-                <span class="text-white">
-                  ›
-                </span>
-
-              </div>
-
-
-              <div
-                class="
-                  flex
-                  items-center
-                  rounded-xl
-                  border
-                  border-[#edf1f4]
-                  p-2.5
-                "
-              >
-
-                <div
-                  class="
-                    mr-2
-                    flex
-                    h-8
-                    w-8
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#edf8ff]
-                    text-[9px]
-                    text-[#2772cc]
-                  "
-                >
-                  WM
-                </div>
-
-                <div class="min-w-0 flex-1">
-
-                  <p class="truncate text-[9px] font-semibold text-[#1f2937]">
-                    Washing Machine Repair
-                  </p>
-
-                  <p class="truncate text-[8px] text-gray-400">
-                    12:30 PM • Kolkata
-                  </p>
-
-                </div>
-
-                <span class="text-gray-400">
-                  ›
-                </span>
-
-              </div>
-
-
-              <div
-                class="
-                  flex
-                  items-center
-                  rounded-xl
-                  border
-                  border-[#edf1f4]
-                  p-2.5
-                "
-              >
-
-                <div
-                  class="
-                    mr-2
-                    flex
-                    h-8
-                    w-8
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#f1f5f9]
-                    text-[9px]
-                    text-[#64748b]
-                  "
-                >
-                  TV
-                </div>
-
-                <div class="min-w-0 flex-1">
-
-                  <p class="truncate text-[9px] font-semibold text-[#1f2937]">
-                    TV Repair
-                  </p>
-
-                  <p class="truncate text-[8px] text-gray-400">
-                    03:00 PM • Kolkata
-                  </p>
-
-                </div>
-
-                <span class="text-gray-400">
-                  ›
-                </span>
-
-              </div>
-
-
-              <div
-                class="
-                  flex
-                  items-center
-                  rounded-xl
-                  border
-                  border-[#edf1f4]
-                  p-2.5
-                "
-              >
-
-                <div
-                  class="
-                    mr-2
-                    flex
-                    h-8
-                    w-8
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#fef3c7]
-                    text-[9px]
-                    text-[#d97706]
-                  "
-                >
-                  AC
-                </div>
-
-                <div class="min-w-0 flex-1">
-
-                  <p class="truncate text-[9px] font-semibold text-[#1f2937]">
-                    AC Installation
-                  </p>
-
-                  <p class="truncate text-[8px] text-gray-400">
-                    05:00 PM • Kolkata
-                  </p>
-
-                </div>
-
-                <span class="text-gray-400">
-                  ›
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <!-- =================================================
+            <!-- =================================================
                CURRENT BOOKING
           ================================================== -->
 
-          <div
-            class="
-              rounded-2xl
-              border
-              border-[#e5edf2]
-              bg-white
-              p-4
-              shadow-sm
-              xl:col-span-3
-            "
-          >
-
-            <div class="mb-3 flex items-start justify-between">
-
-              <div>
-
-                <p
-                  class="
-                    text-[8px]
-                    font-semibold
-                    uppercase
-                    tracking-wider
-                    text-[#2772cc]
-                  "
-                >
+            <div
+              class="flex min-w-0 flex-col rounded-xl2 bg-white p-4 shadow-card"
+            >
+              <div class="mb-3 flex items-center justify-between">
+                <h3 class="font-outfit text-[13px] font-semibold text-c9">
                   Current Booking
-                </p>
-
-                <h3 class="mt-1 text-[13px] font-semibold text-[#1a3151]">
-                  Booking #BK73928
                 </h3>
 
+                <span
+                  class="rounded-full bg-c8 px-2 py-1 text-[8px] font-semibold text-c1"
+                >
+                  ID: 1234567890
+                </span>
               </div>
 
-              <span
-                class="
-                  rounded-full
-                  bg-[#e7f8ee]
-                  px-2
-                  py-1
-                  text-[7px]
-                  font-semibold
-                  text-green-600
-                "
-              >
-                Confirmed
-              </span>
+              <!-- CUSTOMER -->
 
-            </div>
+              <div class="mb-3 flex items-center gap-2">
+                <img
+                  src="https://i.pravatar.cc/64?img=32"
+                  class="h-7 w-7 rounded-full object-cover"
+                  alt="Amit Verma"
+                />
 
-
-            <div class="mb-3 flex items-center">
-
-              <div
-                class="
-                  mr-2
-                  flex
-                  h-9
-                  w-9
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-[#dcefff]
-                  text-[9px]
-                  font-bold
-                  text-[#2772cc]
-                "
-              >
-                RS
-              </div>
-
-              <div>
-
-                <p class="text-[10px] font-semibold text-[#1f2937]">
-                  Rahul Sharma
-                </p>
-
-                <p class="text-[8px] text-gray-400">
-                  Air Conditioner Service
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div
-              class="
-                mb-3
-                rounded-xl
-                bg-[#f7fafc]
-                p-2.5
-              "
-            >
-
-              <div class="flex justify-between">
-
-                <div>
-
-                  <p class="text-[7px] text-gray-400">
-                    DATE
+                <div class="min-w-0">
+                  <p class="truncate text-[10px] font-semibold text-c9">
+                    Amit Verma
                   </p>
 
-                  <p class="mt-1 text-[9px] font-semibold">
-                    Today
+                  <p class="truncate text-[8px] text-c1">
+                    AC Repair & Servicing
                   </p>
-
                 </div>
 
-
-                <div>
-
-                  <p class="text-[7px] text-gray-400">
-                    TIME
-                  </p>
-
-                  <p class="mt-1 text-[9px] font-semibold">
-                    10:00 AM
-                  </p>
-
-                </div>
-
+                <span
+                  class="ml-auto shrink-0 rounded-full bg-emerald-50 px-1.5 py-1 text-[7px] font-semibold text-emerald-600"
+                >
+                  Confirmed
+                </span>
               </div>
 
-            </div>
+              <!-- TIME -->
 
+              <div class="mb-3 flex flex-col gap-1 text-[8px] text-c1">
+                <span class="flex items-center gap-1">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#6b7280"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="9" />
 
-            <div class="flex items-center justify-between">
+                    <path d="M12 7v5l3 3" />
+                  </svg>
 
-              <div>
+                  10:00AM – 12:00PM
+                </span>
 
-                <p class="text-[7px] text-gray-400">
-                  LOCATION
-                </p>
+                <span class="flex items-center gap-1 truncate">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#6b7280"
+                    stroke-width="2"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0z" />
 
-                <p class="mt-1 text-[8px] font-semibold">
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+
                   Salt Lake, Kolkata
-                </p>
-
+                </span>
               </div>
+
+              <!-- MAP -->
+
+              <div class="relative mb-3 h-24 overflow-hidden rounded-xl bg-c8">
+                <iframe
+                  src="https://www.google.com/maps?q=Salt%20Lake%2C%20Kolkata&output=embed"
+                  class="h-full w-full border-0"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Salt Lake Kolkata Map"
+                ></iframe>
+
+                <div
+                  class="absolute bottom-1.5 left-2 rounded-md bg-black/40 px-1.5 py-0.5 text-[8px] font-semibold text-white"
+                >
+                  Kolkata
+                </div>
+              </div>
+
+              <!-- START SESSION -->
 
               <button
-                class="
-                  rounded-full
-                  bg-[#2772cc]
-                  px-3
-                  py-2
-                  text-[8px]
-                  font-semibold
-                  text-white
-                "
+                class="mt-auto flex w-full items-center justify-center gap-2 rounded-lg bg-c4 py-2 text-[10px] font-semibold text-white transition hover:bg-c5"
               >
-                View Details
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+
+                Start Session
               </button>
-
             </div>
 
-          </div>
-
-
-
-        <!-- ===================================================
-     MAP
-==================================================== -->
-
-<div
-  class="
-    relative
-    min-h-[190px]
-    overflow-hidden
-    rounded-2xl
-    border
-    border-[#e5edf2]
-    bg-[#dceff7]
-    xl:col-span-3
-  "
->
-
-  <iframe
-    src="https://www.google.com/maps?q=Kolkata,West%20Bengal,India&output=embed"
-    class="
-      absolute
-      inset-0
-      h-full
-      w-full
-      border-0
-    "
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-
-</div>
-
-
-          <!-- =================================================
-               MESSAGES
+            <!-- =================================================
+               MESSAGES + AVAILABILITY
           ================================================== -->
 
-          <div
-            class="
-              rounded-2xl
-              border
-              border-[#e5edf2]
-              bg-white
-              p-4
-              shadow-sm
-              xl:col-span-3
-            "
-          >
+            <div class="flex min-w-0 flex-col gap-4">
+              <!-- MESSAGES -->
 
-            <div class="mb-4 flex justify-between">
+              <div class="rounded-xl2 bg-white p-4 shadow-card">
+                <div class="mb-3 flex items-center justify-between">
+                  <h3 class="font-outfit text-[13px] font-semibold text-c9">
+                    Messages
+                  </h3>
 
-              <h3 class="text-[13px] font-semibold text-[#1a3151]">
-                Messages
-              </h3>
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#9ca3af"
+                    stroke-width="2"
+                  >
+                    <path d="M23 4v6h-6M1 20v-6h6" />
 
-              <span class="text-[#2772cc]">
-                ◷
-              </span>
-
-            </div>
-
-
-            <div class="space-y-4">
-
-              <div class="flex">
-
-                <div
-                  class="
-                    mr-2
-                    flex
-                    h-8
-                    w-8
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#e0f2fe]
-                    text-[8px]
-                    font-bold
-                    text-[#2772cc]
-                  "
-                >
-                  RK
+                    <path
+                      d="M3.5 9a9 9 0 0114.5-3.5L23 10M1 14l5 5.5A9 9 0 0020.5 15"
+                    />
+                  </svg>
                 </div>
 
-                <div class="min-w-0 flex-1">
+                <ul class="flex flex-col gap-3">
+                  <!-- MESSAGE 1 -->
 
-                  <div class="flex justify-between">
+                  <li class="flex items-start gap-2">
+                    <img
+                      src="https://i.pravatar.cc/64?img=15"
+                      class="h-7 w-7 rounded-full object-cover"
+                      alt=""
+                    />
 
-                    <p class="text-[9px] font-semibold text-[#1f2937]">
-                      Rajesh Kumar
-                    </p>
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center justify-between">
+                        <p class="truncate text-[10px] font-semibold text-c9">
+                          Rajesh Kumar
+                        </p>
 
-                    <span class="text-[7px] text-[#2772cc]">
-                      14m ago
+                        <span class="shrink-0 text-[7px] text-c1">
+                          10 Min Ago
+                        </span>
+                      </div>
+
+                      <p class="truncate text-[8px] text-c1">AC Repair</p>
+
+                      <p class="truncate text-[9px] text-c9/80">
+                        Got it, thank you!
+                      </p>
+                    </div>
+                  </li>
+
+                  <!-- MESSAGE 2 -->
+
+                  <li class="flex items-start gap-2">
+                    <img
+                      src="https://i.pravatar.cc/64?img=51"
+                      class="h-7 w-7 rounded-full object-cover"
+                      alt=""
+                    />
+
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center justify-between">
+                        <p class="truncate text-[10px] font-semibold text-c9">
+                          Vikram Singh
+                        </p>
+
+                        <span class="shrink-0 text-[7px] font-semibold text-c4">
+                          3 Hrs Ago
+                        </span>
+                      </div>
+
+                      <p class="truncate text-[8px] text-c1">
+                        Refrigerator Repair
+                      </p>
+
+                      <p class="truncate text-[9px] text-c9/80">
+                        Can we reschedule to tomorrow?
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- AVAILABILITY -->
+
+              <div class="rounded-xl2 bg-white p-4 shadow-card">
+                <h3 class="mb-3 font-outfit text-[13px] font-semibold text-c9">
+                  Availability Status
+                </h3>
+
+                <div class="flex flex-col gap-3">
+                  <!-- STATUS -->
+
+                  <div>
+                    <p class="mb-1 text-[8px] text-c1">Current Status</p>
+
+                    <span
+                      class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[8px] font-semibold text-emerald-600"
+                    >
+                      <span
+                        class="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                      ></span>
+
+                      Available
                     </span>
 
+                    <p class="mt-1 text-[8px] leading-snug text-c1">
+                      You are available to receive new booking requests.
+                    </p>
                   </div>
 
-                  <p class="mt-1 truncate text-[8px] text-gray-400">
-                    Hi, I have a question about...
-                  </p>
+                  <!-- WORKING HOURS -->
 
-                </div>
+                  <div>
+                    <p class="mb-1 text-[8px] text-c1">Working Hours</p>
 
-              </div>
-
-
-              <div class="flex">
-
-                <div
-                  class="
-                    mr-2
-                    flex
-                    h-8
-                    w-8
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#fef3c7]
-                    text-[8px]
-                    font-bold
-                    text-[#d97706]
-                  "
-                >
-                  VS
-                </div>
-
-                <div class="min-w-0 flex-1">
-
-                  <div class="flex justify-between">
-
-                    <p class="text-[9px] font-semibold text-[#1f2937]">
-                      Vikram Singh
+                    <p class="mb-2 text-[9px] font-semibold text-c9">
+                      09:00 AM – 08:00 PM
                     </p>
 
-                    <span class="text-[7px] text-[#2772cc]">
-                      1h ago
-                    </span>
+                    <p class="mb-1 text-[8px] text-c1">Available Days</p>
 
+                    <div class="flex flex-wrap gap-1">
+                      <span
+                        class="rounded-full bg-c5 px-2 py-1 text-[9px] font-semibold text-white"
+                      >
+                        Mon
+                      </span>
+
+                      <span
+                        class="rounded-full bg-c5 px-2 py-1 text-[9px] font-semibold text-white"
+                      >
+                        Tue
+                      </span>
+
+                      <span
+                        class="rounded-full bg-c5 px-2 py-1 text-[9px] font-semibold text-white"
+                      >
+                        Wed
+                      </span>
+
+                      <span
+                        class="rounded-full bg-c8 px-2 py-1 text-[9px] font-semibold text-c1"
+                      >
+                        Thu
+                      </span>
+
+                      <span
+                        class="rounded-full bg-c8 px-2 py-1 text-[9px] font-semibold text-c1"
+                      >
+                        Fri
+                      </span>
+
+                      <span
+                        class="rounded-full bg-c8 px-2 py-1 text-[9px] font-semibold text-c1"
+                      >
+                        Sat
+                      </span>
+
+                      <span
+                        class="rounded-full bg-c8 px-2 py-1 text-[9px] font-semibold text-c1"
+                      >
+                        Sun
+                      </span>
+                    </div>
                   </div>
-
-                  <p class="mt-1 truncate text-[8px] text-gray-400">
-                    Thanks for your quick response...
-                  </p>
-
                 </div>
-
               </div>
-
             </div>
 
-          </div>
-
-
-
-          <!-- =================================================
-               AVAILABILITY
-          ================================================== -->
-
-          <div
-            class="
-              rounded-2xl
-              border
-              border-[#e5edf2]
-              bg-white
-              p-4
-              shadow-sm
-              xl:col-span-6
-            "
-          >
-
-            <div class="mb-4 flex justify-between">
-
-              <h3 class="text-[13px] font-semibold text-[#1a3151]">
-                Availability Status
-              </h3>
-
-              <span
-                class="
-                  flex
-                  items-center
-                  gap-1
-                  text-[8px]
-                  font-semibold
-                  text-green-500
-                "
-              >
-
-                <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
-
-                Available
-
-              </span>
-
-            </div>
-
-
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-              <div>
-
-                <p class="text-[8px] text-gray-400">
-                  Working Hours
-                </p>
-
-                <p class="mt-1 text-[10px] font-semibold">
-                  09:00 AM - 08:00 PM
-                </p>
-
-              </div>
-
-
-              <div>
-
-                <p class="text-[8px] text-gray-400">
-                  Weekly Schedule
-                </p>
-
-                <div class="mt-2 flex flex-wrap gap-1">
-
-                  <span class="rounded bg-[#e7f8ee] px-2 py-1 text-[7px] text-green-600">
-                    Mon
-                  </span>
-
-                  <span class="rounded bg-[#e7f8ee] px-2 py-1 text-[7px] text-green-600">
-                    Tue
-                  </span>
-
-                  <span class="rounded bg-[#e7f8ee] px-2 py-1 text-[7px] text-green-600">
-                    Wed
-                  </span>
-
-                  <span class="rounded bg-[#e7f8ee] px-2 py-1 text-[7px] text-green-600">
-                    Thu
-                  </span>
-
-                  <span class="rounded bg-[#e7f8ee] px-2 py-1 text-[7px] text-green-600">
-                    Fri
-                  </span>
-
-                  <span class="rounded bg-gray-100 px-2 py-1 text-[7px] text-gray-400">
-                    Sat
-                  </span>
-
-                  <span class="rounded bg-gray-100 px-2 py-1 text-[7px] text-gray-400">
-                    Sun
-                  </span>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div
-              class="
-                mt-4
-                flex
-                items-center
-                justify-between
-                border-t
-                border-[#edf1f4]
-                pt-3
-              "
-            >
-
-              <p class="text-[8px] text-gray-400">
-                You are available to receive new booking requests.
-              </p>
-
-              <span
-                class="
-                  rounded-full
-                  bg-[#e7f8ee]
-                  px-3
-                  py-1.5
-                  text-[7px]
-                  font-semibold
-                  text-green-600
-                "
-              >
-                Available
-              </span>
-
-            </div>
-
-          </div>
-
-
-
-          <!-- =================================================
+            <!-- =================================================
                CALENDAR
           ================================================== -->
 
-          <div
-            class="
-              rounded-2xl
-              border
-              border-[#e5edf2]
-              bg-white
-              p-4
-              shadow-sm
-              xl:col-span-3
-            "
-          >
+            <div class="min-w-0 rounded-xl2 bg-white p-4 shadow-card">
+              <div class="mb-3 flex items-center justify-between">
+                <h3 class="font-outfit text-[12px] font-semibold text-c9">
+                  Calendar View
+                </h3>
 
-            <div class="mb-3 flex items-center justify-between">
+                <select
+                  class="rounded-full border-0 bg-c14 px-2 py-1 text-[8px] font-semibold text-c4 outline-none"
+                >
+                  <option>Monthly View</option>
 
-              <h3 class="text-[13px] font-semibold text-[#1a3151]">
-                Calendar View
-              </h3>
+                  <option>Weekly View</option>
+                </select>
+              </div>
 
-              <select
-                class="
-                  rounded-md
-                  border
-                  border-[#e5edf2]
-                  px-2
-                  py-1
-                  text-[7px]
-                  text-[#2772cc]
-                  outline-none
-                "
-              >
-                <option>Monthly View</option>
-                <option>Weekly View</option>
-              </select>
+              <div class="grid grid-cols-7 gap-y-1 text-center text-c1">
+                <!-- DAYS -->
 
+                <span class="text-[7px] font-semibold">Sun</span>
+                <span class="text-[7px] font-semibold">Mon</span>
+                <span class="text-[7px] font-semibold">Tue</span>
+                <span class="text-[7px] font-semibold">Wed</span>
+                <span class="text-[7px] font-semibold">Thu</span>
+                <span class="text-[7px] font-semibold">Fri</span>
+                <span class="text-[7px] font-semibold">Sat</span>
+
+                <!-- WEEK 1 -->
+
+                <span class="rounded-full py-1 text-[10px] text-c3">26</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">27</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">28</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">29</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">30</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">31</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">1</span>
+
+                <!-- WEEK 2 -->
+
+                <span class="rounded-full py-1 text-[10px] text-c9">2</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">3</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">4</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">5</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">6</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">7</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">8</span>
+
+                <!-- WEEK 3 -->
+
+                <span class="rounded-full py-1 text-[10px] text-c9">9</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">10</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">11</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">12</span>
+
+                <span
+                  class="rounded-full bg-c12 py-1 text-[10px] font-bold text-white"
+                >
+                  13
+                </span>
+
+                <span class="rounded-full py-1 text-[10px] text-c9">14</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">15</span>
+
+                <!-- WEEK 4 -->
+
+                <span class="rounded-full py-1 text-[10px] text-c9">16</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">17</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">18</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">19</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">20</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">21</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">22</span>
+
+                <!-- WEEK 5 -->
+
+                <span class="rounded-full py-1 text-[10px] text-c9">23</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">24</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">25</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">26</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">27</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">28</span>
+                <span class="rounded-full py-1 text-[10px] text-c9">29</span>
+
+                <!-- WEEK 6 -->
+
+                <span class="rounded-full py-1 text-[10px] text-c9">30</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">1</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">2</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">3</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">4</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">5</span>
+                <span class="rounded-full py-1 text-[10px] text-c3">6</span>
+              </div>
             </div>
 
-
-            <div class="grid grid-cols-7 text-center">
-
-              <span class="pb-2 text-[7px] text-gray-400">Sun</span>
-              <span class="pb-2 text-[7px] text-gray-400">Mon</span>
-              <span class="pb-2 text-[7px] text-gray-400">Tue</span>
-              <span class="pb-2 text-[7px] text-gray-400">Wed</span>
-              <span class="pb-2 text-[7px] text-gray-400">Thu</span>
-              <span class="pb-2 text-[7px] text-gray-400">Fri</span>
-              <span class="pb-2 text-[7px] text-gray-400">Sat</span>
-
-
-              <span class="py-1 text-[8px] text-gray-300">26</span>
-              <span class="py-1 text-[8px]">27</span>
-              <span class="py-1 text-[8px]">28</span>
-              <span class="py-1 text-[8px]">29</span>
-              <span class="py-1 text-[8px]">30</span>
-              <span class="py-1 text-[8px]">31</span>
-              <span class="py-1 text-[8px]">1</span>
-
-              <span class="py-1 text-[8px]">2</span>
-              <span class="py-1 text-[8px]">3</span>
-              <span class="py-1 text-[8px]">4</span>
-              <span class="py-1 text-[8px]">5</span>
-              <span class="py-1 text-[8px]">6</span>
-              <span class="py-1 text-[8px]">7</span>
-              <span class="py-1 text-[8px]">8</span>
-
-              <span class="py-1 text-[8px]">9</span>
-              <span class="py-1 text-[8px]">10</span>
-              <span class="py-1 text-[8px]">11</span>
-              <span class="py-1 text-[8px]">12</span>
-              <span class="py-1 text-[8px]">13</span>
-              <span class="py-1 text-[8px]">14</span>
-              <span class="py-1 text-[8px]">15</span>
-
-              <span class="py-1 text-[8px]">16</span>
-              <span class="py-1 text-[8px]">17</span>
-              <span class="py-1 text-[8px]">18</span>
-
-              <span
-                class="
-                  mx-auto
-                  flex
-                  h-5
-                  w-5
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-[#dff3ff]
-                  text-[8px]
-                  font-semibold
-                  text-[#2772cc]
-                "
-              >
-                19
-              </span>
-
-              <span class="py-1 text-[8px]">20</span>
-              <span class="py-1 text-[8px]">21</span>
-              <span class="py-1 text-[8px]">22</span>
-
-              <span class="py-1 text-[8px]">23</span>
-              <span class="py-1 text-[8px]">24</span>
-              <span class="py-1 text-[8px]">25</span>
-              <span class="py-1 text-[8px]">26</span>
-              <span class="py-1 text-[8px]">27</span>
-              <span class="py-1 text-[8px]">28</span>
-              <span class="py-1 text-[8px]">29</span>
-
-            </div>
-
-          </div>
-
-
-
-          <!-- =================================================
-               WEEKLY EARNINGS
-               CHART JS
+            <!-- =================================================
+               INCOME OVERVIEW
           ================================================== -->
 
-          <div
-            class="
-              rounded-2xl
-              border
-              border-[#e5edf2]
-              bg-white
-              p-4
-              shadow-sm
-              xl:col-span-8
-            "
-          >
+            <div class="min-w-0 rounded-xl2 bg-white p-4 shadow-card">
+              <h3 class="mb-1 font-outfit text-[12px] font-semibold text-c9">
+                Income Overview
+              </h3>
 
-            <div class="mb-3 flex items-start justify-between">
+              <div class="relative flex h-32 items-center justify-center">
+                <canvas id="incomeChart"></canvas>
 
+                <div
+                  class="pointer-events-none absolute inset-0 flex items-center justify-center"
+                >
+                  <span class="font-outfit text-[13px] font-bold text-c9">
+                    ₹36,450
+                  </span>
+                </div>
+              </div>
+
+              <div
+                class="mt-1 flex items-center justify-center gap-3 text-[8px]"
+              >
+                <span class="flex items-center gap-1 text-c1">
+                  <span class="h-1.5 w-1.5 rounded-full bg-c4"></span>
+
+                  Monthly
+                </span>
+
+                <span class="flex items-center gap-1 text-c1">
+                  <span class="h-1.5 w-1.5 rounded-full bg-c15"></span>
+
+                  Weekly
+                </span>
+              </div>
+            </div>
+
+            <!-- =================================================
+               RATING INSIGHT
+          ================================================== -->
+
+            <div
+              class="flex min-w-0 items-center justify-between rounded-xl2 bg-gradient-to-br from-c14 to-c7/40 p-4 shadow-card"
+            >
               <div>
+                <h3 class="mb-1 font-outfit text-[12px] font-semibold text-c9">
+                  Rating Insight
+                </h3>
 
-                <h3 class="text-[13px] font-semibold text-[#1a3151]">
+                <p class="text-[9px] text-c1">
+                  Up By
+
+                  <span class="font-semibold text-emerald-600"> 0.2 </span>
+                </p>
+
+                <p class="mt-0.5 text-[7px] text-c1">This Month</p>
+              </div>
+
+              <div class="text-xl">⭐</div>
+            </div>
+          </div>
+
+          <!-- =================================================
+             WEEKLY EARNINGS
+        ================================================== -->
+
+          <div class="mt-4 rounded-xl2 bg-white p-4 shadow-card sm:p-5">
+            <!-- TITLE -->
+
+            <div class="mb-1 flex items-center justify-between">
+              <div>
+                <h3
+                  class="font-outfit text-[13px] font-semibold text-c9 sm:text-[15px]"
+                >
                   Weekly Earnings
                 </h3>
 
-                <p class="mt-1 text-[8px] text-gray-400">
-                  Track your earnings for this week
+                <p class="mt-0.5 text-[9px] text-c1 sm:text-[10px]">
+                  Track your income for this week
                 </p>
-
               </div>
 
+              <label
+                class="flex cursor-pointer items-center gap-1 text-[9px] text-c1"
+              >
+                <input type="checkbox" checked class="h-3 w-3 accent-c4" />
 
-              <div class="flex items-center gap-1">
-
-                <span class="h-1.5 w-1.5 rounded-full bg-[#45a5ec]"></span>
-
-                <span class="text-[7px] text-gray-400">
-                  Earnings
-                </span>
-
-              </div>
-
+                Earnings
+              </label>
             </div>
 
+            <!-- CHART -->
 
-            <div class="h-[250px] w-full">
-
+            <div class="relative h-52 sm:h-60">
               <canvas id="earningsChart"></canvas>
 
-            </div>
-
-          </div>
-
-
-
-          <!-- =================================================
-               INCOME OVERVIEW
-               CHART JS
-          ================================================== -->
-
-          <div
-            class="
-              rounded-2xl
-              border
-              border-[#e5edf2]
-              bg-white
-              p-4
-              shadow-sm
-              xl:col-span-4
-            "
-          >
-
-            <h3 class="text-[13px] font-semibold text-[#1a3151]">
-              Income Overview
-            </h3>
-
-
-            <div class="relative mx-auto mt-3 h-[180px] w-[180px]">
-
-              <canvas id="incomeChart"></canvas>
-
-
-              <!-- Center -->
+              <!-- TOTAL -->
 
               <div
-                class="
-                  pointer-events-none
-                  absolute
-                  inset-0
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-                "
+                class="absolute bottom-1 left-0 inline-flex flex-col rounded-xl bg-c10 px-3 py-2.5 text-white shadow-lg"
               >
-
-                <p class="text-[14px] font-bold text-[#1f2937]">
-                  ₹56,450
-                </p>
-
-                <p class="text-[7px] text-gray-400">
-                  Total Income
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="mt-2 flex justify-center gap-6">
-
-              <div class="flex items-center gap-1">
-
-                <span class="h-2 w-2 rounded-full bg-[#2772cc]"></span>
-
-                <span class="text-[8px] text-gray-500">
-                  Available
+                <span class="font-outfit text-[15px] font-bold sm:text-lg">
+                  ₹12,450
                 </span>
 
-              </div>
+                <span class="text-[8px] text-white/70 sm:text-[9px]">
+                  Total Earnings
 
-
-              <div class="flex items-center gap-1">
-
-                <span class="h-2 w-2 rounded-full bg-[#fbbf24]"></span>
-
-                <span class="text-[8px] text-gray-500">
-                  Pending
+                  <span class="font-semibold text-emerald-400">
+                    +12% This Week
+                  </span>
                 </span>
-
               </div>
-
             </div>
-
           </div>
-
-
-
-          <!-- =================================================
-               BOOKING INSIGHT
-          ================================================== -->
-
-          <div
-            class="
-              rounded-2xl
-              bg-gradient-to-br
-              from-[#effaff]
-              to-[#dff4ff]
-              p-4
-              xl:col-span-4
-            "
-          >
-
-            <div class="flex items-center justify-between">
-
-              <div>
-
-                <h3 class="text-[13px] font-semibold text-[#1a3151]">
-                  Booking Insight
-                </h3>
-
-                <p class="mt-1 text-[8px] text-gray-400">
-                  Your booking performance
-                </p>
-
-              </div>
-
-              <span class="text-2xl">
-                📊
-              </span>
-
-            </div>
-
-
-            <div class="mt-4 flex items-end justify-between">
-
-              <div>
-
-                <p class="text-[8px] text-gray-400">
-                  This Month
-                </p>
-
-                <p class="mt-1 text-[22px] font-bold text-[#244f84]">
-                  28
-                </p>
-
-                <p class="text-[8px] text-green-500">
-                  ↑ 18% from last month
-                </p>
-
-              </div>
-
-
-              <div class="flex items-end gap-1">
-
-                <span class="h-5 w-2 rounded-t bg-[#b9e4fa]"></span>
-
-                <span class="h-8 w-2 rounded-t bg-[#8fd6f8]"></span>
-
-                <span class="h-11 w-2 rounded-t bg-[#45a5ec]"></span>
-
-                <span class="h-14 w-2 rounded-t bg-[#2772cc]"></span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
+        </main>
       </div>
+    </div>
 
-    </section>
+    <!-- =====================================================
+       CHART JS
+  ====================================================== -->
 
-  </main>
+    <script>
+      /* =====================================================
+       WEEKLY EARNINGS CHART
+    ====================================================== */
 
+      const earningsCanvas = document.getElementById("earningsChart");
 
+      const earningsCtx = earningsCanvas.getContext("2d");
 
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================== -->
+      const earningsGradient = earningsCtx.createLinearGradient(0, 0, 0, 250);
 
-  <script>
+      earningsGradient.addColorStop(0, "rgba(69,165,236,0.35)");
 
-    // =========================================================
-    // SIDEBAR
-    // =========================================================
+      earningsGradient.addColorStop(1, "rgba(69,165,236,0.02)");
 
-    const sidebar =
-      document.getElementById("sidebar");
-
-    const overlay =
-      document.getElementById("overlay");
-
-    const openSidebar =
-      document.getElementById("openSidebar");
-
-    const closeSidebar =
-      document.getElementById("closeSidebar");
-
-
-    openSidebar.addEventListener("click", () => {
-
-      sidebar.classList.remove("-translate-x-full");
-
-      overlay.classList.remove("hidden");
-
-    });
-
-
-    closeSidebar.addEventListener("click", () => {
-
-      sidebar.classList.add("-translate-x-full");
-
-      overlay.classList.add("hidden");
-
-    });
-
-
-    overlay.addEventListener("click", () => {
-
-      sidebar.classList.add("-translate-x-full");
-
-      overlay.classList.add("hidden");
-
-    });
-
-
-
-    // =========================================================
-    // LINE CHART
-    // =========================================================
-
-    const earningsChart =
-      document.getElementById("earningsChart");
-
-
-    new Chart(
-      earningsChart,
-      {
-
+      new Chart(earningsCtx, {
         type: "line",
 
-
         data: {
-
-          labels: [
-            "Sun",
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu",
-            "Fri",
-            "Sat"
-          ],
-
+          labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 
           datasets: [
-
             {
-
               label: "Earnings",
 
-              data: [
-                4200,
-                6200,
-                4800,
-                7800,
-                6500,
-                8200,
-                12450
-              ],
+              data: [1400, 2600, 1200, 3100, 2000, 3600, 2450],
 
-              borderColor: "#45a5ec",
+              borderColor: "#2772cc",
 
-              backgroundColor:
-                "rgba(69,165,236,0.20)",
-
-              borderWidth: 2,
-
-              pointRadius: 4,
-
-              pointHoverRadius: 6,
+              backgroundColor: earningsGradient,
 
               pointBackgroundColor: "#ffffff",
 
-              pointBorderColor: "#45a5ec",
+              pointBorderColor: "#2772cc",
 
               pointBorderWidth: 2,
 
+              pointRadius: 3.5,
+
+              pointHoverRadius: 6,
+
               fill: true,
 
-              tension: 0.4
+              tension: 0.45,
 
-            }
-
-          ]
-
+              borderWidth: 2.2,
+            },
+          ],
         },
 
-
         options: {
-
           responsive: true,
 
           maintainAspectRatio: false,
 
+          interaction: {
+            intersect: false,
 
-          plugins: {
-
-            legend: {
-              display: false
-            },
-
-
-            tooltip: {
-
-              backgroundColor: "#244f84",
-
-              displayColors: false,
-
-              callbacks: {
-
-                label: function(context) {
-
-                  return (
-                    " ₹" +
-                    context.raw.toLocaleString("en-IN")
-                  );
-
-                }
-
-              }
-
-            }
-
+            mode: "index",
           },
 
-
-          scales: {
-
-            x: {
-
-              grid: {
-                display: false
-              },
-
-              border: {
-                display: false
-              },
-
-              ticks: {
-
-                color: "#9ca3af",
-
-                font: {
-                  size: 8
-                }
-
-              }
-
+          plugins: {
+            legend: {
+              display: false,
             },
 
+            tooltip: {
+              backgroundColor: "#1a3151",
 
-            y: {
-
-              beginAtZero: true,
-
-              border: {
-                display: false
+              titleFont: {
+                family: "Outfit",
               },
 
+              bodyFont: {
+                family: "Albert Sans",
+              },
+
+              padding: 9,
+
+              cornerRadius: 7,
+
+              callbacks: {
+                label: function (ctx) {
+                  return "₹" + ctx.parsed.y.toLocaleString("en-IN");
+                },
+              },
+            },
+          },
+
+          scales: {
+            x: {
               grid: {
+                display: false,
+              },
 
-                color: "#edf2f5"
-
+              border: {
+                display: false,
               },
 
               ticks: {
-
-                color: "#9ca3af",
+                color: "#6b7280",
 
                 font: {
-                  size: 8
+                  size: 9,
+
+                  family: "Albert Sans",
+                },
+              },
+            },
+
+            y: {
+              min: 0,
+
+              max: 4000,
+
+              grid: {
+                color: "#f0f1f5",
+              },
+
+              border: {
+                display: false,
+              },
+
+              ticks: {
+                color: "#6b7280",
+
+                font: {
+                  size: 9,
+
+                  family: "Albert Sans",
                 },
 
-                callback: function(value) {
+                stepSize: 1000,
 
+                callback: function (value) {
                   return "₹" + value / 1000 + "k";
+                },
+              },
+            },
+          },
+        },
+      });
 
-                }
+      /* =====================================================
+       INCOME DONUT CHART
+    ====================================================== */
 
-              }
+      const incomeCanvas = document.getElementById("incomeChart");
 
-            }
+      const incomeCtx = incomeCanvas.getContext("2d");
 
-          }
-
-        }
-
-      }
-    );
-
-
-
-    // =========================================================
-    // DOUGHNUT CHART
-    // =========================================================
-
-    const incomeChart =
-      document.getElementById("incomeChart");
-
-
-    new Chart(
-      incomeChart,
-      {
-
+      new Chart(incomeCtx, {
         type: "doughnut",
 
-
         data: {
-
-          labels: [
-            "Available",
-            "Pending"
-          ],
-
+          labels: ["Monthly", "Weekly"],
 
           datasets: [
-
             {
+              data: [72, 28],
 
-              data: [
-                70,
-                30
-              ],
-
-              backgroundColor: [
-                "#2772cc",
-                "#fbbf24"
-              ],
+              backgroundColor: ["#2772cc", "#f59e0b"],
 
               borderWidth: 0,
 
-              hoverOffset: 5
-
-            }
-
-          ]
-
+              hoverOffset: 3,
+            },
+          ],
         },
 
-
         options: {
-
           responsive: true,
 
           maintainAspectRatio: false,
 
-          cutout: "68%",
-
+          cutout: "72%",
 
           plugins: {
-
             legend: {
-              display: false
-            }
+              display: false,
+            },
 
-          }
+            tooltip: {
+              backgroundColor: "#1a3151",
 
-        }
+              padding: 8,
 
-      }
-    );
+              cornerRadius: 7,
 
-  </script>
-
-</body>
+              callbacks: {
+                label: function (ctx) {
+                  return ctx.label + ": " + ctx.parsed + "%";
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
