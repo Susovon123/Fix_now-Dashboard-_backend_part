@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FixNow - Profile</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body class="min-h-screen overflow-x-hidden bg-[#f8fafc] font-sans text-[#172033]">
+
+
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
+
+<div
+    id="overlay"
+    onclick="closeSidebar()"
+    class="fixed inset-0 z-40 hidden bg-black/20 lg:hidden">
+</div>
+
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    id="sidebar"
+    class="fixed left-0 top-0 z-50 h-screen w-[240px]
+           -translate-x-full
+           border-r border-[#e7edf2]
+           bg-white
+           transition-transform duration-300
+           lg:translate-x-0"
+>
+
+
+    <!-- LOGO -->
+
+    <div class="flex h-[72px] items-center px-[22px]">
+
+        <div>
+
+            <div class="text-[24px] font-black leading-none tracking-[-1.8px] text-[#2772cc]">
+                FIX<span class="text-[#f59e0b]">NOW</span>
+            </div>
+
+            <div class="ml-[2px] mt-[3px] text-[5px] font-bold tracking-[1px] text-[#8291a5]">
+                SERVICE PLATFORM
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SECOND LOGO -->
+
+    <div class="flex h-[70px] items-center border-t border-[#f1f3f5] px-[22px]">
+
+        <div>
+
+            <div class="text-[24px] font-black leading-none tracking-[-1.8px] text-[#2772cc]">
+                FIX<span class="text-[#f59e0b]">NOW</span>
+            </div>
+
+            <div class="ml-[2px] mt-[3px] text-[5px] font-bold tracking-[1px] text-[#8291a5]">
+                SERVICE PLATFORM
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="px-[10px] pt-[8px]">
+
+
+        <!-- Dashboard -->
+
+        <a
+            href="#"
+            class="mb-[5px] flex h-[42px] items-center rounded-[8px]
+                   bg-[#eef8fe]
+                   px-[13px]
+                   text-[12px]
+                   font-medium
+                   text-[#2772cc]
+                   shadow-[0_4px_12px_rgba(39,114,204,0.08)]"
+        >
+
+            <i
+                data-lucide="layout-dashboard"
+                class="mr-[12px] h-[15px] w-[15px]">
+            </i>
+
+            Dashboard
+
+        </a>
+
+
+
+        <!-- Bookings -->
+
+        <a
+            href="#"
+            class="mb-[5px] flex h-[42px] items-center rounded-[8px]
+                   px-[13px]
+                   text-[12px]
+                   font-medium
+                   text-[#64748b]
+                   transition
+                   hover:bg-[#eef8fe]
+                   hover:text-[#2772cc]"
+        >
+
+            <i
+                data-lucide="calendar-days"
+                class="mr-[12px] h-[15px] w-[15px]">
+            </i>
+
+            Bookings
+
+            <span
+                class="ml-auto flex h-[18px] min-w-[18px]
+                       items-center justify-center
+                       rounded-full
+                       bg-[#62b7e9]
+                       px-[5px]
+                       text-[9px]
+                       text-white"
+            >
+                8
+            </span>
+
+        </a>
+
+
+
+        <!-- Service Management -->
+
+        <a
+            href="#"
+            class="mb-[5px] flex h-[42px] items-center rounded-[8px]
+                   px-[13px]
+                   text-[12px]
+                   font-medium
+                   text-[#64748b]
+                   transition
+                   hover:bg-[#eef8fe]
+                   hover:text-[#2772cc]"
+        >
+
+            <i
+                data-lucide="briefcase-business"
+                class="mr-[12px] h-[15px] w-[15px]">
+            </i>
+
+            Service Management
+
+        </a>
+
+
+
+        <!-- Customer Insights -->
+
+        <a
+            href="#"
+            class="mb-[5px] flex h-[42px] items-center rounded-[8px]
+                   px-[13px]
+                   text-[12px]
+                   font-medium
+                   text-[#64748b]
+                   transition
+                   hover:bg-[#eef8fe]
+                   hover:text-[#2772cc]"
+        >
+
+            <i
+                data-lucide="message-circle"
+                class="mr-[12px] h-[15px] w-[15px]">
+            </i>
+
+            Customer Insights
+
+            <span
+                class="ml-auto flex h-[18px] min-w-[18px]
+                       items-center justify-center
+                       rounded-full
+                       bg-[#62b7e9]
+                       px-[5px]
+                       text-[9px]
+                       text-white"
+            >
+                8
+            </span>
+
+        </a>
+
+
+
+        <!-- Profile -->
+
+        <a
+            href="#"
+            class="mb-[5px] flex h-[42px] items-center rounded-[8px]
+                   px-[13px]
+                   text-[12px]
+                   font-medium
+                   text-[#2772cc]
+                   bg-[#f1f8fd]"
+        >
+
+            <i
+                data-lucide="user-round"
+                class="mr-[12px] h-[15px] w-[15px]">
+            </i>
+
+            Profile
+
+        </a>
+
+
+
+        <!-- Settings -->
+
+        <a
+            href="#"
+            class="mb-[5px] flex h-[42px] items-center rounded-[8px]
+                   px-[13px]
+                   text-[12px]
+                   font-medium
+                   text-[#64748b]
+                   transition
+                   hover:bg-[#eef8fe]
+                   hover:text-[#2772cc]"
+        >
+
+            <i
+                data-lucide="settings"
+                class="mr-[12px] h-[15px] w-[15px]">
+            </i>
+
+            Settings
+
+        </a>
+
+
+
+        <!-- Logout -->
+
+        <a
+            href="#"
+            onclick="logout(event)"
+            class="flex h-[42px] items-center rounded-[8px]
+                   px-[13px]
+                   text-[12px]
+                   font-medium
+                   text-[#64748b]
+                   transition
+                   hover:bg-[#eef8fe]
+                   hover:text-[#2772cc]"
+        >
+
+            <i
+                data-lucide="log-out"
+                class="mr-[12px] h-[15px] w-[15px]">
+            </i>
+
+            Log Out
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- SUPPORT CARD -->
+
+    <div
+        class="absolute bottom-[18px] left-[18px] right-[18px]
+               h-[135px]
+               overflow-hidden
+               rounded-[10px]
+               border border-[#d5eaf8]
+               bg-gradient-to-br
+               from-[#edf9ff]
+               to-[#d9effc]
+               px-[12px]
+               py-[12px]"
+    >
+
+        <div
+            class="flex h-[28px] w-[28px]
+                   items-center justify-center
+                   rounded-full
+                   bg-white/70
+                   text-[#2772cc]"
+        >
+
+            <i
+                data-lucide="headphones"
+                class="h-[16px] w-[16px]">
+            </i>
+
+        </div>
+
+
+        <p class="mt-[5px] text-[11px] font-semibold text-[#2772cc]">
+            Need Assistance?
+        </p>
+
+
+        <p class="mt-[4px] text-[8px] leading-[1.5] text-[#738398]">
+            Contact Our Customer Team Anytime For Quick Service.
+        </p>
+
+
+        <button
+            onclick="contactSupport()"
+            class="mt-[9px] h-[27px] w-full
+                   rounded-full
+                   border border-[#2772cc]
+                   bg-white
+                   text-[8px]
+                   font-medium
+                   text-[#2772cc]
+                   transition
+                   hover:bg-[#2772cc]
+                   hover:text-white"
+        >
+            Contact Support
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<div class="min-h-screen lg:ml-[240px]">
+
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header
+    class="mx-[8px] mt-[8px]
+           flex h-[64px]
+           items-center
+           rounded-[10px]
+           border border-[#e5ebf0]
+           bg-gradient-to-r
+           from-[#eefaff]
+           via-white
+           to-[#fffced]
+           px-[12px]
+           shadow-[0_3px_14px_rgba(30,60,90,0.05)]"
+>
+
+
+    <!-- MOBILE BUTTON -->
+
+    <button
+        onclick="openSidebar()"
+        class="mr-[10px]
+               flex h-[34px] w-[34px]
+               items-center justify-center
+               rounded-[7px]
+               border border-[#e5ebef]
+               bg-white
+               lg:hidden"
+    >
+
+        <i
+            data-lucide="menu"
+            class="h-[17px] w-[17px]">
+        </i>
+
+    </button>
+
+
+
+    <!-- TITLE -->
+
+    <div class="flex items-center">
+
+        <h1 class="text-[18px] font-semibold tracking-[-0.4px] text-[#172033]">
+            Profile
+        </h1>
+
+        <i
+            data-lucide="badge-check"
+            class="ml-[5px] h-[17px] w-[17px] text-[#2772cc]">
+        </i>
+
+    </div>
+
+
+
+    <!-- RIGHT -->
+
+    <div class="ml-auto flex items-center">
+
+
+        <!-- SEARCH -->
+
+        <div
+            class="hidden h-[34px] w-[300px]
+                   items-center
+                   rounded-full
+                   border border-[#edf0f3]
+                   bg-white
+                   px-[10px]
+                   md:flex"
+        >
+
+            <i
+                data-lucide="search"
+                class="h-[13px] w-[13px] text-[#9aa6b5]">
+            </i>
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search for Booking, Jobs..."
+                class="ml-[7px] w-full
+                       bg-transparent
+                       text-[9px]
+                       outline-none
+                       placeholder:text-[#a9b3bf]"
+            >
+
+            <button
+                onclick="searchData()"
+                class="flex h-[24px] w-[24px]
+                       items-center justify-center
+                       rounded-full
+                       bg-[#f2f8fc]
+                       text-[#2772cc]"
+            >
+
+                <i
+                    data-lucide="search"
+                    class="h-[11px] w-[11px]">
+                </i>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- MOBILE SEARCH -->
+
+        <button
+            class="ml-[7px]
+                   flex h-[32px] w-[32px]
+                   items-center justify-center
+                   rounded-full
+                   border border-[#edf0f3]
+                   bg-white
+                   text-[#2772cc]
+                   md:hidden"
+        >
+
+            <i
+                data-lucide="search"
+                class="h-[13px] w-[13px]">
+            </i>
+
+        </button>
+
+
+
+        <!-- NOTIFICATION -->
+
+        <button
+            onclick="showNotification()"
+            class="ml-[7px]
+                   flex h-[32px] w-[32px]
+                   items-center justify-center
+                   rounded-full
+                   border border-[#edf0f3]
+                   bg-white
+                   text-[#2772cc]"
+        >
+
+            <i
+                data-lucide="bell"
+                class="h-[13px] w-[13px]">
+            </i>
+
+        </button>
+
+
+
+        <!-- USER -->
+
+        <button
+            onclick="showUserMenu()"
+            class="ml-[8px]
+                   flex h-[38px]
+                   items-center
+                   rounded-[8px]
+                   border border-[#e8edf1]
+                   bg-white
+                   px-[6px]"
+        >
+
+            <div class="relative">
+
+                <img
+                    src="https://i.pravatar.cc/100?img=12"
+                    alt="Rahul Sharma"
+                    class="h-[29px] w-[29px] rounded-full object-cover"
+                >
+
+                <span
+                    class="absolute bottom-0 right-0
+                           h-[7px] w-[7px]
+                           rounded-full
+                           border border-white
+                           bg-[#22c55e]"
+                ></span>
+
+            </div>
+
+
+            <div class="ml-[7px] hidden text-left sm:block">
+
+                <p class="text-[9px] font-semibold leading-none text-[#293448]">
+                    Rahul Sharma
+                </p>
+
+                <p class="mt-[4px] text-[7px] leading-none text-[#8b96a5]">
+                    Service Provider
+                </p>
+
+            </div>
+
+
+            <i
+                data-lucide="chevron-down"
+                class="ml-[8px] h-[11px] w-[11px] text-[#69778a]">
+            </i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main
+    class="relative px-[10px] pb-[15px] pt-[10px]
+           md:px-[14px]"
+>
+
+
+    <!-- BACKGROUND GLOW -->
+
+    <div
+        class="pointer-events-none
+               absolute
+               left-[-100px]
+               top-[-100px]
+               h-[400px]
+               w-[500px]
+               rounded-full
+               bg-[#e7f7ff]/70
+               blur-[100px]"
+    ></div>
+
+
+    <div
+        class="pointer-events-none
+               absolute
+               bottom-[-100px]
+               right-[-100px]
+               h-[400px]
+               w-[500px]
+               rounded-full
+               bg-[#fff9df]/70
+               blur-[100px]"
+    ></div>
+
+
+
+    <!-- =====================================================
+         TWO EQUAL COLUMNS
+    ====================================================== -->
+
+    <div
+        class="relative grid grid-cols-1 gap-[10px]
+               lg:grid-cols-2"
+    >
+
+
+
+        <!-- =================================================
+             LEFT COLUMN
+        ================================================= -->
+
+        <div>
+
+
+            <!-- =================================================
+                 ABOUT ME
+            ================================================= -->
+
+            <section
+                class="mb-[10px]
+                       min-h-[285px]
+                       rounded-[11px]
+                       border border-[#e8edf1]
+                       bg-white
+                       px-[16px]
+                       py-[14px]
+                       shadow-[0_3px_12px_rgba(20,50,80,0.035)]"
+            >
+
+
+                <!-- HEADER -->
+
+                <div class="flex items-start justify-between">
+
+                    <div>
+
+                        <h2 class="text-[14px] font-semibold text-[#172033]">
+                            About Me
+                        </h2>
+
+                        <p class="mt-[3px] text-[8px] text-[#9aa5b3]">
+                            Introduce Your Personal Information And Availability
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        onclick="editSection('About Me')"
+                        class="flex h-[27px]
+                               items-center
+                               rounded-[6px]
+                               border border-[#2772cc]
+                               px-[9px]
+                               text-[8px]
+                               font-medium
+                               text-[#2772cc]
+                               hover:bg-[#2772cc]
+                               hover:text-white"
+                    >
+
+                        Edit
+
+                        <i
+                            data-lucide="pencil"
+                            class="ml-[4px] h-[10px] w-[10px]">
+                        </i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- PROFILE -->
+
+                <div
+                    class="mt-[17px]
+                           flex
+                           border-b
+                           border-[#edf0f2]
+                           pb-[16px]"
+                >
+
+
+                    <!-- IMAGE -->
+
+                    <div class="relative shrink-0">
+
+                        <img
+                            src="https://i.pravatar.cc/150?img=12"
+                            alt="Rahul Sharma"
+                            class="h-[76px] w-[76px]
+                                   rounded-full
+                                   border-[3px]
+                                   border-[#edf1f4]
+                                   object-cover"
+                        >
+
+                        <button
+                            class="absolute bottom-0 right-0
+                                   flex h-[20px] w-[20px]
+                                   items-center justify-center
+                                   rounded-full
+                                   border-[2px]
+                                   border-white
+                                   bg-white
+                                   shadow-sm"
+                        >
+
+                            <i
+                                data-lucide="camera"
+                                class="h-[9px] w-[9px] text-[#46566b]">
+                            </i>
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- DETAILS -->
+
+                    <div class="ml-[13px] min-w-0">
+
+                        <h3 class="text-[14px] font-semibold text-[#172033]">
+                            Rahul Sharma
+                        </h3>
+
+
+                        <div class="mt-[6px] flex items-center">
+
+                            <i
+                                data-lucide="star"
+                                class="h-[10px] w-[10px]
+                                       fill-[#f59e0b]
+                                       text-[#f59e0b]">
+                            </i>
+
+                            <span class="ml-[3px] text-[9px] font-semibold text-[#344054]">
+                                4.8
+                            </span>
+
+                            <span class="ml-[3px] text-[8px] text-[#8d99a8]">
+                                (48 Reviews)
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- CONTACT -->
+
+                        <div class="mt-[9px] flex flex-wrap">
+
+
+                            <div
+                                class="mr-[5px]
+                                       flex h-[27px]
+                                       items-center
+                                       rounded-[6px]
+                                       border border-[#e8edf1]
+                                       px-[7px]"
+                            >
+
+                                <i
+                                    data-lucide="phone"
+                                    class="mr-[4px] h-[10px] w-[10px]">
+                                </i>
+
+                                <span class="text-[8px] text-[#344054]">
+                                    +91 98765 43210
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="flex h-[27px]
+                                       items-center
+                                       rounded-[6px]
+                                       border border-[#e8edf1]
+                                       px-[7px]"
+                            >
+
+                                <i
+                                    data-lucide="mail"
+                                    class="mr-[4px] h-[10px] w-[10px]">
+                                </i>
+
+                                <span class="text-[8px] text-[#344054]">
+                                    Rahulsharma.Purv@gmail.com
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- LOCATION -->
+
+                        <div
+                            class="mt-[6px]
+                                   flex h-[27px] w-fit
+                                   items-center
+                                   rounded-[6px]
+                                   border border-[#e8edf1]
+                                   px-[7px]"
+                        >
+
+                            <i
+                                data-lucide="map-pin"
+                                class="mr-[4px] h-[10px] w-[10px]">
+                            </i>
+
+                            <span class="text-[8px] text-[#344054]">
+                                Kolkata, West Bengal
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BIO -->
+
+                <div class="pt-[13px]">
+
+                    <h3 class="text-[10px] font-semibold text-[#172033]">
+                        Bio
+                    </h3>
+
+                    <p
+                        class="mt-[5px]
+                               max-w-[96%]
+                               text-[9px]
+                               leading-[1.65]
+                               text-[#8995a4]"
+                    >
+                        Experienced and customer-focused technician specializing
+                        in residential and commercial air conditioning systems,
+                        skilled in diagnostics, repairs, preventive maintenance,
+                        and servicing. An enthusiastic technician delivering
+                        reliable, timely, and high-quality service with complete
+                        customer satisfaction.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PERSONAL INFORMATION
+            ================================================= -->
+
+            <section
+                class="mb-[10px]
+                       min-h-[215px]
+                       rounded-[11px]
+                       border border-[#e8edf1]
+                       bg-white
+                       px-[16px]
+                       py-[14px]
+                       shadow-[0_3px_12px_rgba(20,50,80,0.035)]"
+            >
+
+
+                <div class="flex items-center justify-between">
+
+                    <h2 class="text-[14px] font-semibold text-[#172033]">
+                        Personal Information
+                    </h2>
+
+
+                    <button
+                        onclick="editSection('Personal Information')"
+                        class="flex h-[27px]
+                               items-center
+                               rounded-[6px]
+                               border border-[#2772cc]
+                               px-[9px]
+                               text-[8px]
+                               font-medium
+                               text-[#2772cc]
+                               hover:bg-[#2772cc]
+                               hover:text-white"
+                    >
+
+                        Edit
+
+                        <i
+                            data-lucide="pencil"
+                            class="ml-[4px] h-[10px] w-[10px]">
+                        </i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- TOP INFORMATION -->
+
+                <div
+                    class="mt-[20px]
+                           grid grid-cols-2
+                           border-b
+                           border-[#edf0f2]
+                           pb-[18px]
+                           md:grid-cols-4"
+                >
+
+
+                    <div>
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Full Name
+                        </p>
+
+                        <p class="mt-[5px] text-[9px] font-semibold text-[#293448]">
+                            Rahul Sharma
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Date Of Birth
+                        </p>
+
+                        <p class="mt-[5px] text-[9px] font-semibold text-[#293448]">
+                            15 Aug 1996
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Gender
+                        </p>
+
+                        <p class="mt-[5px] text-[9px] font-semibold text-[#293448]">
+                            Male
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Languages Known
+                        </p>
+
+                        <p class="mt-[5px] text-[9px] font-semibold text-[#293448]">
+                            English, Hindi, Bengali
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BOTTOM INFORMATION -->
+
+                <div
+                    class="grid grid-cols-1
+                           pt-[17px]
+                           md:grid-cols-[1.35fr_0.8fr_0.8fr]"
+                >
+
+                    <div>
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Address
+                        </p>
+
+                        <p
+                            class="mt-[5px]
+                                   max-w-[200px]
+                                   text-[9px]
+                                   font-semibold
+                                   leading-[1.5]
+                                   text-[#293448]"
+                        >
+                            12, Lake View Road,
+                            Kolkata, West Bengal
+                            -700029
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Pin Code
+                        </p>
+
+                        <p class="mt-[5px] text-[9px] font-semibold text-[#293448]">
+                            700029
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Joined On
+                        </p>
+
+                        <p class="mt-[5px] text-[9px] font-semibold text-[#293448]">
+                            12 Jan 2024
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 AVAILABILITY
+            ================================================= -->
+
+            <section
+                class="min-h-[175px]
+                       rounded-[11px]
+                       border border-[#e8edf1]
+                       bg-white
+                       px-[16px]
+                       py-[14px]
+                       shadow-[0_3px_12px_rgba(20,50,80,0.035)]"
+            >
+
+
+                <div class="flex items-center justify-between">
+
+                    <h2 class="text-[14px] font-semibold text-[#172033]">
+                        Availability Status
+                    </h2>
+
+
+                    <button
+                        onclick="editSection('Availability Status')"
+                        class="flex h-[27px]
+                               items-center
+                               rounded-[6px]
+                               border border-[#2772cc]
+                               px-[9px]
+                               text-[8px]
+                               font-medium
+                               text-[#2772cc]
+                               hover:bg-[#2772cc]
+                               hover:text-white"
+                    >
+
+                        Edit
+
+                        <i
+                            data-lucide="pencil"
+                            class="ml-[4px] h-[10px] w-[10px]">
+                        </i>
+
+                    </button>
+
+                </div>
+
+
+
+                <div
+                    class="mt-[20px]
+                           grid grid-cols-1
+                           md:grid-cols-[0.75fr_1.25fr]"
+                >
+
+
+                    <!-- STATUS -->
+
+                    <div
+                        class="border-b
+                               pb-[14px]
+                               md:border-b-0
+                               md:border-r
+                               md:pr-[18px]"
+                    >
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Current Status
+                        </p>
+
+
+                        <div class="mt-[7px] flex items-center">
+
+                            <span class="mr-[5px] h-[7px] w-[7px] rounded-full bg-[#22c55e]"></span>
+
+                            <span
+                                class="rounded-full
+                                       bg-[#e5faed]
+                                       px-[8px]
+                                       py-[4px]
+                                       text-[8px]
+                                       text-[#18a557]"
+                            >
+                                Available
+                            </span>
+
+                        </div>
+
+
+                        <p
+                            class="mt-[10px]
+                                   max-w-[170px]
+                                   text-[8px]
+                                   leading-[1.55]
+                                   text-[#8a96a5]"
+                        >
+                            You are available to receive new booking requests.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- WORKING HOURS -->
+
+                    <div class="pt-[14px] md:pl-[18px] md:pt-0">
+
+                        <p class="text-[8px] text-[#929dab]">
+                            Working Hours
+                        </p>
+
+
+                        <div class="mt-[6px] flex items-center">
+
+                            <i
+                                data-lucide="clock-3"
+                                class="mr-[5px] h-[13px] w-[13px] text-[#5269c8]">
+                            </i>
+
+                            <span class="text-[9px] font-semibold text-[#293448]">
+                                09:00 AM - 08:00 PM
+                            </span>
+
+                        </div>
+
+
+                        <p class="mt-[10px] text-[8px] text-[#929dab]">
+                            Available Days
+                        </p>
+
+
+                        <div class="mt-[6px] flex flex-wrap">
+
+                            <span class="mr-[4px] rounded-[4px] bg-[#e5faed] px-[7px] py-[4px] text-[7px] text-[#18a557]">
+                                Mon
+                            </span>
+
+                            <span class="mr-[4px] rounded-[4px] bg-[#e5faed] px-[7px] py-[4px] text-[7px] text-[#18a557]">
+                                Tue
+                            </span>
+
+                            <span class="mr-[4px] rounded-[4px] bg-[#e5faed] px-[7px] py-[4px] text-[7px] text-[#18a557]">
+                                Wed
+                            </span>
+
+                            <span class="mr-[4px] rounded-[4px] bg-[#e5faed] px-[7px] py-[4px] text-[7px] text-[#18a557]">
+                                Thu
+                            </span>
+
+                            <span class="mr-[4px] rounded-[4px] bg-[#e5faed] px-[7px] py-[4px] text-[7px] text-[#18a557]">
+                                Fri
+                            </span>
+
+                            <span class="mr-[4px] rounded-[4px] bg-[#e5faed] px-[7px] py-[4px] text-[7px] text-[#18a557]">
+                                Sat
+                            </span>
+
+                            <span class="rounded-[4px] bg-[#f0f2f4] px-[7px] py-[4px] text-[7px] text-[#8994a2]">
+                                Sun
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT COLUMN
+        ================================================= -->
+
+        <div>
+
+
+            <!-- =================================================
+                 EARNINGS
+            ================================================= -->
+
+            <section
+                class="mb-[10px]
+                       rounded-[11px]
+                       border border-[#e8edf1]
+                       bg-white
+                       px-[16px]
+                       py-[14px]
+                       shadow-[0_3px_12px_rgba(20,50,80,0.035)]"
+            >
+
+
+                <div class="flex items-center justify-between">
+
+                    <h2 class="text-[14px] font-semibold text-[#172033]">
+                        Earnings Overview
+                    </h2>
+
+
+                    <select
+                        id="period"
+                        onchange="changePeriod()"
+                        class="h-[27px]
+                               rounded-[6px]
+                               border border-[#2772cc]
+                               bg-white
+                               px-[8px]
+                               text-[8px]
+                               text-[#2772cc]
+                               outline-none"
+                    >
+
+                        <option value="this">
+                            This Month
+                        </option>
+
+                        <option value="last">
+                            Last Month
+                        </option>
+
+                        <option value="three">
+                            Last 3 Months
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LARGE BLUE CHART CARD
+                ================================================= -->
+
+                <div
+                    class="relative
+                           mt-[12px]
+                           h-[205px]
+                           overflow-hidden
+                           rounded-[9px]
+                           bg-gradient-to-r
+                           from-[#298fe2]
+                           to-[#285b90]
+                           px-[15px]
+                           pt-[14px]"
+                >
+
+
+                    <p class="text-[8px] text-[#d8ecff]">
+                        Total Earnings
+                    </p>
+
+
+                    <div class="mt-[3px] flex items-center">
+
+                        <span
+                            id="earningValue"
+                            class="text-[27px]
+                                   font-medium
+                                   tracking-[-1px]
+                                   text-white"
+                        >
+                            ₹28,450
+                        </span>
+
+
+                        <span
+                            class="ml-[7px]
+                                   rounded-full
+                                   bg-white/15
+                                   px-[6px]
+                                   py-[3px]
+                                   text-[7px]
+                                   text-white"
+                        >
+                            +12.8%
+                        </span>
+
+                    </div>
+
+
+                    <p class="mt-[1px] text-[7px] text-[#c9e4fa]">
+                        Vs Last Month
+                    </p>
+
+
+
+                    <!-- FULL WIDTH CHART -->
+
+                    <div
+                        class="absolute
+                               bottom-[8px]
+                               left-[10px]
+                               right-[10px]
+                               h-[105px]"
+                    >
+
+                        <canvas id="earningsChart"></canvas>
+
+                    </div>
+
+
+
+                    <!-- ICON -->
+
+                    <div
+                        class="absolute
+                               right-[10px]
+                               top-[10px]
+                               flex h-[25px] w-[25px]
+                               items-center
+                               justify-center
+                               rounded-[5px]
+                               bg-white/15"
+                    >
+
+                        <i
+                            data-lucide="chart-no-axes-combined"
+                            class="h-[13px] w-[13px] text-white">
+                        </i>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     STATISTICS
+                ================================================= -->
+
+                <div
+                    class="mt-[9px]
+                           grid grid-cols-2
+                           overflow-hidden
+                           rounded-[8px]
+                           border border-[#e9edf1]
+                           md:grid-cols-4"
+                >
+
+
+                    <!-- COMPLETED -->
+
+                    <div
+                        class="border-b
+                               border-[#e9edf1]
+                               px-[5px]
+                               py-[10px]
+                               text-center
+                               md:border-b-0
+                               md:border-r"
+                    >
+
+                        <i
+                            data-lucide="circle-check"
+                            class="mx-auto h-[16px] w-[16px] text-[#6682a4]">
+                        </i>
+
+                        <p class="mt-[5px] text-[7px] text-[#8e99a8]">
+                            Completed Jobs
+                        </p>
+
+                        <p class="mt-[3px] text-[10px] font-semibold text-[#293448]">
+                            32
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- PENDING -->
+
+                    <div
+                        class="border-b
+                               border-[#e9edf1]
+                               px-[5px]
+                               py-[10px]
+                               text-center
+                               md:border-b-0
+                               md:border-r"
+                    >
+
+                        <i
+                            data-lucide="coins"
+                            class="mx-auto h-[16px] w-[16px] text-[#6682a4]">
+                        </i>
+
+                        <p class="mt-[5px] text-[7px] text-[#8e99a8]">
+                            Pending Payout
+                        </p>
+
+                        <p class="mt-[3px] text-[10px] font-semibold text-[#293448]">
+                            ₹5,980
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- WITHDRAWN -->
+
+                    <div
+                        class="border-b
+                               border-[#e9edf1]
+                               px-[5px]
+                               py-[10px]
+                               text-center
+                               md:border-b-0
+                               md:border-r"
+                    >
+
+                        <i
+                            data-lucide="wallet-cards"
+                            class="mx-auto h-[16px] w-[16px] text-[#6682a4]">
+                        </i>
+
+                        <p class="mt-[5px] text-[7px] text-[#8e99a8]">
+                            Withdrawn
+                        </p>
+
+                        <p class="mt-[3px] text-[10px] font-semibold text-[#293448]">
+                            ₹21,420
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- RATING -->
+
+                    <div
+                        class="px-[5px]
+                               py-[10px]
+                               text-center"
+                    >
+
+                        <i
+                            data-lucide="star"
+                            class="mx-auto h-[16px] w-[16px]
+                                   fill-[#f59e0b]
+                                   text-[#f59e0b]">
+                        </i>
+
+                        <p class="mt-[5px] text-[7px] text-[#8e99a8]">
+                            Average Rating
+                        </p>
+
+                        <p class="mt-[3px] text-[10px] font-semibold text-[#293448]">
+                            4.8 ★
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RECENT TRANSACTIONS
+            ================================================= -->
+
+            <section
+                class="min-h-[330px]
+                       rounded-[11px]
+                       border border-[#e8edf1]
+                       bg-white
+                       px-[16px]
+                       py-[14px]
+                       shadow-[0_3px_12px_rgba(20,50,80,0.035)]"
+            >
+
+
+                <div class="flex items-center justify-between">
+
+                    <h2 class="text-[14px] font-semibold text-[#172033]">
+                        Recent Transactions
+                    </h2>
+
+
+                    <button
+                        onclick="viewAllTransactions()"
+                        class="flex items-center
+                               text-[8px]
+                               font-medium
+                               text-[#2772cc]"
+                    >
+
+                        View All
+
+                        <i
+                            data-lucide="arrow-right"
+                            class="ml-[4px] h-[10px] w-[10px]">
+                        </i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- TRANSACTION 1 -->
+
+                <div
+                    class="grid min-h-[63px]
+                           grid-cols-[32px_1fr_auto]
+                           items-center
+                           border-b border-[#f0f2f4]"
+                >
+
+                    <div
+                        class="flex h-[24px] w-[24px]
+                               items-center justify-center
+                               rounded-full
+                               bg-[#e7faef]"
+                    >
+
+                        <i
+                            data-lucide="arrow-down"
+                            class="h-[11px] w-[11px] text-[#22a65a]">
+                        </i>
+
+                    </div>
+
+
+                    <div class="pl-[7px]">
+
+                        <p class="text-[9px] font-semibold text-[#293448]">
+                            Booking Payment
+                        </p>
+
+                        <p class="mt-[3px] text-[7px] text-[#8e99a8]">
+                            Booking #FN-4821
+                        </p>
+
+                    </div>
+
+
+                    <div class="text-right">
+
+                        <p class="text-[6px] text-[#8e99a8]">
+                            17 May 2024 · 02:30 PM
+                        </p>
+
+                        <div class="mt-[3px]">
+
+                            <span class="text-[9px] font-semibold text-[#22a65a]">
+                                +₹1,250
+                            </span>
+
+                            <span
+                                class="ml-[4px]
+                                       rounded-full
+                                       bg-[#e5faed]
+                                       px-[5px]
+                                       py-[3px]
+                                       text-[6px]
+                                       text-[#20a25a]"
+                            >
+                                Paid
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TRANSACTION 2 -->
+
+                <div
+                    class="grid min-h-[63px]
+                           grid-cols-[32px_1fr_auto]
+                           items-center
+                           border-b border-[#f0f2f4]"
+                >
+
+                    <div
+                        class="flex h-[24px] w-[24px]
+                               items-center justify-center
+                               rounded-full
+                               bg-[#fff0f0]"
+                    >
+
+                        <i
+                            data-lucide="arrow-up"
+                            class="h-[11px] w-[11px] text-[#ef4444]">
+                        </i>
+
+                    </div>
+
+
+                    <div class="pl-[7px]">
+
+                        <p class="text-[9px] font-semibold text-[#293448]">
+                            Platform Commission
+                        </p>
+
+                        <p class="mt-[3px] text-[7px] text-[#8e99a8]">
+                            Booking #FN-4820
+                        </p>
+
+                    </div>
+
+
+                    <div class="text-right">
+
+                        <p class="text-[6px] text-[#8e99a8]">
+                            16 May 2024 · 02:00 PM
+                        </p>
+
+                        <div class="mt-[3px]">
+
+                            <span class="text-[9px] font-semibold text-[#ef4444]">
+                                -₹120
+                            </span>
+
+                            <span
+                                class="ml-[4px]
+                                       rounded-full
+                                       bg-[#fff0f0]
+                                       px-[5px]
+                                       py-[3px]
+                                       text-[6px]
+                                       text-[#ef4444]"
+                            >
+                                Fee
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TRANSACTION 3 -->
+
+                <div
+                    class="grid min-h-[63px]
+                           grid-cols-[32px_1fr_auto]
+                           items-center
+                           border-b border-[#f0f2f4]"
+                >
+
+                    <div
+                        class="flex h-[24px] w-[24px]
+                               items-center justify-center
+                               rounded-full
+                               bg-[#e7faef]"
+                    >
+
+                        <i
+                            data-lucide="arrow-down"
+                            class="h-[11px] w-[11px] text-[#22a65a]">
+                        </i>
+
+                    </div>
+
+
+                    <div class="pl-[7px]">
+
+                        <p class="text-[9px] font-semibold text-[#293448]">
+                            Booking Payment
+                        </p>
+
+                        <p class="mt-[3px] text-[7px] text-[#8e99a8]">
+                            Booking #FN-4818
+                        </p>
+
+                    </div>
+
+
+                    <div class="text-right">
+
+                        <p class="text-[6px] text-[#8e99a8]">
+                            15 May 2024 · 11:45 AM
+                        </p>
+
+                        <div class="mt-[3px]">
+
+                            <span class="text-[9px] font-semibold text-[#22a65a]">
+                                +₹1,800
+                            </span>
+
+                            <span
+                                class="ml-[4px]
+                                       rounded-full
+                                       bg-[#e5faed]
+                                       px-[5px]
+                                       py-[3px]
+                                       text-[6px]
+                                       text-[#20a25a]"
+                            >
+                                Paid
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TRANSACTION 4 -->
+
+                <div
+                    class="grid min-h-[63px]
+                           grid-cols-[32px_1fr_auto]
+                           items-center
+                           border-b border-[#f0f2f4]"
+                >
+
+                    <div
+                        class="flex h-[24px] w-[24px]
+                               items-center justify-center
+                               rounded-full
+                               bg-[#fff0f0]"
+                    >
+
+                        <i
+                            data-lucide="arrow-up"
+                            class="h-[11px] w-[11px] text-[#ef4444]">
+                        </i>
+
+                    </div>
+
+
+                    <div class="pl-[7px]">
+
+                        <p class="text-[9px] font-semibold text-[#293448]">
+                            Platform Commission
+                        </p>
+
+                        <p class="mt-[3px] text-[7px] text-[#8e99a8]">
+                            Booking #FN-4816
+                        </p>
+
+                    </div>
+
+
+                    <div class="text-right">
+
+                        <p class="text-[6px] text-[#8e99a8]">
+                            14 May 2024 · 04:20 PM
+                        </p>
+
+                        <div class="mt-[3px]">
+
+                            <span class="text-[9px] font-semibold text-[#ef4444]">
+                                -₹200
+                            </span>
+
+                            <span
+                                class="ml-[4px]
+                                       rounded-full
+                                       bg-[#fff0f0]
+                                       px-[5px]
+                                       py-[3px]
+                                       text-[6px]
+                                       text-[#ef4444]"
+                            >
+                                Fee
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TRANSACTION 5 -->
+
+                <div
+                    class="grid min-h-[63px]
+                           grid-cols-[32px_1fr_auto]
+                           items-center"
+                >
+
+                    <div
+                        class="flex h-[24px] w-[24px]
+                               items-center justify-center
+                               rounded-full
+                               bg-[#e7faef]"
+                    >
+
+                        <i
+                            data-lucide="arrow-down"
+                            class="h-[11px] w-[11px] text-[#22a65a]">
+                        </i>
+
+                    </div>
+
+
+                    <div class="pl-[7px]">
+
+                        <p class="text-[9px] font-semibold text-[#293448]">
+                            Booking Payment
+                        </p>
+
+                        <p class="mt-[3px] text-[7px] text-[#8e99a8]">
+                            Booking #FN-4815
+                        </p>
+
+                    </div>
+
+
+                    <div class="text-right">
+
+                        <p class="text-[6px] text-[#8e99a8]">
+                            13 May 2024 · 09:45 AM
+                        </p>
+
+                        <div class="mt-[3px]">
+
+                            <span class="text-[9px] font-semibold text-[#22a65a]">
+                                +₹950
+                            </span>
+
+                            <span
+                                class="ml-[4px]
+                                       rounded-full
+                                       bg-[#e5faed]
+                                       px-[5px]
+                                       py-[3px]
+                                       text-[6px]
+                                       text-[#20a25a]"
+                            >
+                                Paid
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   LUCIDE
+========================================================= */
+
+lucide.createIcons();
+
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+function openSidebar() {
+
+    document
+        .getElementById("sidebar")
+        .classList
+        .remove("-translate-x-full");
+
+    document
+        .getElementById("overlay")
+        .classList
+        .remove("hidden");
+
+}
+
+
+function closeSidebar() {
+
+    document
+        .getElementById("sidebar")
+        .classList
+        .add("-translate-x-full");
+
+    document
+        .getElementById("overlay")
+        .classList
+        .add("hidden");
+
+}
+
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchData() {
+
+    const input =
+        document.getElementById("searchInput");
+
+    const value =
+        input.value.trim();
+
+
+    if (!value) {
+
+        alert("Please enter something to search.");
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    alert("Searching for: " + value);
+
+}
+
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                searchData();
+
+            }
+
+        }
+    );
+
+
+
+/* =========================================================
+   EDIT
+========================================================= */
+
+function editSection(section) {
+
+    alert("Edit " + section);
+
+}
+
+
+
+/* =========================================================
+   SUPPORT
+========================================================= */
+
+function contactSupport() {
+
+    alert("Opening customer support...");
+
+}
+
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+function showNotification() {
+
+    alert("You have 3 new notifications.");
+
+}
+
+
+
+/* =========================================================
+   USER MENU
+========================================================= */
+
+function showUserMenu() {
+
+    alert("Profile menu opened.");
+
+}
+
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(event) {
+
+    event.preventDefault();
+
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+
+    if (confirmLogout) {
+
+        alert("Logged out successfully.");
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TRANSACTIONS
+========================================================= */
+
+function viewAllTransactions() {
+
+    alert("Opening all transactions...");
+
+}
+
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+const canvas =
+    document.getElementById("earningsChart");
+
+
+const ctx =
+    canvas.getContext("2d");
+
+
+
+/* CHART GRADIENT */
+
+const gradient =
+    ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        120
+    );
+
+
+gradient.addColorStop(
+    0,
+    "rgba(255,255,255,0.30)"
+);
+
+
+gradient.addColorStop(
+    1,
+    "rgba(255,255,255,0)"
+);
+
+
+
+/* CHART */
+
+const earningsChart =
+    new Chart(
+        ctx,
+        {
+
+            type: "line",
+
+
+            data: {
+
+                labels: [
+                    "1",
+                    "5",
+                    "10",
+                    "15",
+                    "20",
+                    "25",
+                    "30"
+                ],
+
+
+                datasets: [
+
+                    {
+
+                        data: [
+                            1900,
+                            2500,
+                            2100,
+                            3500,
+                            3100,
+                            5000,
+                            7200
+                        ],
+
+
+                        borderColor: "#ffffff",
+
+                        backgroundColor: gradient,
+
+                        fill: true,
+
+                        borderWidth: 2,
+
+                        tension: 0.45,
+
+                        pointRadius: 0,
+
+                        pointHoverRadius: 4,
+
+                        pointHoverBackgroundColor: "#ffffff",
+
+                        pointHoverBorderColor: "#2772cc",
+
+                        pointHoverBorderWidth: 2
+
+                    }
+
+                ]
+
+            },
+
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+
+                animation: {
+
+                    duration: 700,
+
+                    easing: "easeOutQuart"
+
+                },
+
+
+                plugins: {
+
+                    legend: {
+
+                        display: false
+
+                    },
+
+
+                    tooltip: {
+
+                        displayColors: false,
+
+                        backgroundColor: "#ffffff",
+
+                        titleColor: "#293448",
+
+                        bodyColor: "#2772cc",
+
+                        borderColor: "#e5edf4",
+
+                        borderWidth: 1,
+
+                        padding: 8,
+
+
+                        titleFont: {
+
+                            size: 10
+
+                        },
+
+
+                        bodyFont: {
+
+                            size: 10
+
+                        }
+
+                    }
+
+                },
+
+
+                scales: {
+
+                    x: {
+
+                        display: false
+
+                    },
+
+
+                    y: {
+
+                        display: false
+
+                    }
+
+                },
+
+
+                interaction: {
+
+                    intersect: false,
+
+                    mode: "index"
+
+                }
+
+            }
+
+        }
+    );
+
+
+
+/* =========================================================
+   CHANGE PERIOD
+========================================================= */
+
+function changePeriod() {
+
+    const period =
+        document.getElementById("period").value;
+
+
+    const earningValue =
+        document.getElementById("earningValue");
+
+
+    if (period === "last") {
+
+        earningValue.innerText =
+            "₹25,220";
+
+
+        earningsChart.data.datasets[0].data =
+            [
+                1400,
+                2200,
+                1900,
+                2900,
+                2700,
+                4300,
+                6200
+            ];
+
+    }
+
+
+    else if (period === "three") {
+
+        earningValue.innerText =
+            "₹72,850";
+
+
+        earningsChart.data.datasets[0].data =
+            [
+                2400,
+                3100,
+                2800,
+                4100,
+                3900,
+                5600,
+                8000
+            ];
+
+    }
+
+
+    else {
+
+        earningValue.innerText =
+            "₹28,450";
+
+
+        earningsChart.data.datasets[0].data =
+            [
+                1900,
+                2500,
+                2100,
+                3500,
+                3100,
+                5000,
+                7200
+            ];
+
+    }
+
+
+    earningsChart.update();
+
+}
+
+
+
+/* =========================================================
+   RESPONSIVE SIDEBAR
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        if (window.innerWidth >= 1024) {
+
+            document
+                .getElementById("sidebar")
+                .classList
+                .remove("-translate-x-full");
+
+
+            document
+                .getElementById("overlay")
+                .classList
+                .add("hidden");
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
